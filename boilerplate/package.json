@@ -101,7 +101,8 @@
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1",
     "webpack-fail-plugin": "^1.0.4",
-    "webpack-md5-hash": "^0.0.4"
+    "webpack-md5-hash": "^0.0.4",
+    "postcss-loader": "^0.8.0"
   },
   "repository": {
     "type": "git",
