@@ -9,6 +9,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 var failPlugin = require('webpack-fail-plugin');
+var CleanPlugin = require('clean-webpack-plugin');
 
 var metadata = {
     title: 'Angular2 Webpack Starter by @gdi2990 from @AngularClass',
@@ -73,7 +74,9 @@ module.exports = {
     },
 
     plugins: [
+        new CleanPlugin('dist'),
         failPlugin,
+        new CleanPlugin('dist'),
         new webpack.optimize.OccurenceOrderPlugin(true),
         new webpack.optimize.CommonsChunkPlugin({ name: 'polyfills', filename: 'polyfills.bundle.js', minChunks: Infinity }),
         // static assets

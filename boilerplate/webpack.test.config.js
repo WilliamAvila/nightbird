@@ -9,7 +9,7 @@ var ProvidePlugin = require('webpack/lib/ProvidePlugin');
 var DefinePlugin = require('webpack/lib/DefinePlugin');
 var ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 var failPlugin = require('webpack-fail-plugin');
-
+var CleanPlugin = require('clean-webpack-plugin');
 /*
  * Config
  */
@@ -79,6 +79,7 @@ module.exports = {
     stats: { colors: true, reasons: true },
     debug: false,
     plugins: [
+        new CleanPlugin('dist'),
         failPlugin,
         new DefinePlugin({
             // Environment helpers

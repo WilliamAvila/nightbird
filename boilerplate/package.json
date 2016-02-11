@@ -58,6 +58,7 @@
     "zone.js": "0.5.11"
   },
   "devDependencies": {
+    "clean-webpack-plugin": "^0.1.8",
     "compression-webpack-plugin": "^0.3.0",
     "concurrently": "^1.0.0",
     "copy-webpack-plugin": "^1.1.1",
