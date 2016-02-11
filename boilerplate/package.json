@@ -51,6 +51,8 @@
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.3",
     "es7-reflect-metadata": "^1.5.5",
+    "less": "^2.6.0",
+    "less-loader": "^2.2.2",
     "npm-run-all": "^1.5.1",
     "rxjs": "5.0.0-beta.0",
     "zone.js": "0.5.11"
@@ -102,7 +104,9 @@
     "webpack-dev-server": "^1.14.1",
     "webpack-fail-plugin": "^1.0.4",
     "webpack-md5-hash": "^0.0.4",
-    "postcss-loader": "^0.8.0"
+    "postcss-loader": "^0.8.0",
+    "less": "^2.6.0",
+    "less-loader": "^2.2.2"
   },
   "repository": {
     "type": "git",
