@@ -76,6 +76,8 @@
     "karma-chrome-launcher": "^0.2.2",
     "karma-coverage": "^0.5.3",
     "karma-jasmine": "^0.3.7",
+    "karma-jasmine-html-reporter": "^0.2.0",
+    "karma-jasmine-html-reporter-livereload": "^1.0.0",
     "karma-mocha-reporter": "^1.1.5",
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.7",
