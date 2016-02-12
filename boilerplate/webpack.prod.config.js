@@ -17,7 +17,7 @@ var CompressionPlugin = require('compression-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanPlugin = require('clean-webpack-plugin');
-var WebpackMd5Hash    = require('webpack-md5-hash');
+var WebpackMd5Hash = require('webpack-md5-hash');
 var ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 var HOST = process.env.HOST || 'localhost';
 var PORT = process.env.PORT || 8080;
@@ -41,8 +41,8 @@ module.exports = {
   debug: false,
 
   entry: {
-    'polyfills':'./src/polyfills.ts',
-    'main':'./src/main.ts' // our angular app
+    'polyfills': './src/polyfills.ts',
+    'main': './src/main.ts' // our angular app
   },
 
   // Config for our build files
@@ -56,7 +56,7 @@ module.exports = {
   resolve: {
     cache: false,
     // ensure loader extensions match
-    extensions: prepend(['.ts','.js','.json','.css','.html'], '.async') // ensure .async.ts etc also works
+    extensions: prepend(['.ts', '.js', '.json', '.css', '.html'], '.async') // ensure .async.ts etc also works
   },
 
   module: {
@@ -81,7 +81,7 @@ module.exports = {
       {
         test: /\.async\.ts$/,
         loaders: ['es6-promise-loader', 'ts-loader'],
-        exclude: [ /\.(spec|e2e)\.ts$/ ]
+        exclude: [/\.(spec|e2e)\.ts$/]
       },
       // Support for .ts files.
       {
@@ -94,19 +94,21 @@ module.exports = {
             'noEmitHelpers': true,
           }
         },
-        exclude: [ /\.(spec|e2e|async)\.ts$/ ]
+        exclude: [/\.(spec|e2e|async)\.ts$/]
       },
 
       // Support for *.json files.
-      { test: /\.json$/,  loader: 'json-loader' },
+      {test: /\.json$/, loader: 'json-loader'},
 
       // Support for CSS as raw text
-      { test: /\.css$/,   loader: 'raw-loader' },
+      {test: /\.css$/, loader: 'raw-loader'},
 
       // support for .html as raw text
-      { test: /\.html$/,  loader: 'raw-loader', exclude: [ root('src/index.html') ] },
-      { test: /\.scss$/, exclude: /node_modules/, loader: 'raw-loader!sass-loader!postcss-loader' },
-      {test: /\.less$/,loader: 'raw-loader!less'}
+      {test: /\.html$/, loader: 'raw-loader', exclude: [root('src/index.html')]},
+      {test: /\.scss$/, exclude: /node_modules/, loader: 'raw-loader!sass-loader!postcss-loader'},
+      {test: /\.less$/, loader: 'raw-loader!less'},
+      {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff"},
+      {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"}
 
       // if you add a loader include the file extension
     ]
@@ -130,7 +132,7 @@ module.exports = {
       }
     ]),
     // generating html
-    new HtmlWebpackPlugin({ template: 'src/index.html' }),
+    new HtmlWebpackPlugin({template: 'src/index.html'}),
     new DefinePlugin({
       // Environment helpers
       'process.env': {
@@ -163,11 +165,11 @@ module.exports = {
       // TODO(mastertinner): enable mangling as soon as angular2 beta.4 is out
       // mangle: { screw_ie8 : true },//prod
       mangle: false,
-      compress : { screw_ie8 : true},//prod
+      compress: {screw_ie8: true},//prod
       comments: false//prod
 
     }),
-   // include uglify in production
+    // include uglify in production
     new CompressionPlugin({
       algorithm: gzipMaxLevel,
       regExp: /\.css$|\.html$|\.js$|\.map$/,
@@ -209,9 +211,11 @@ function rootNode(args) {
 
 function prepend(extensions, args) {
   args = args || [];
-  if (!Array.isArray(args)) { args = [args] }
-  return extensions.reduce(function(memo, val) {
-    return memo.concat(val, args.map(function(prefix) {
+  if (!Array.isArray(args)) {
+    args = [args]
+  }
+  return extensions.reduce(function (memo, val) {
+    return memo.concat(val, args.map(function (prefix) {
       return prefix + val
     }));
   }, ['']);

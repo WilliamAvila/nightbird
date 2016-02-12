@@ -7,7 +7,7 @@ import {FORM_PROVIDERS} from 'angular2/common';
 
 import {RouterActive} from './directives/router-active';
 import {Home} from './home/home';
-
+require('font-awesome-webpack');
 /*
  * App Component
  * Top Level Component
