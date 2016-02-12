@@ -32,7 +32,8 @@ module.exports = {
 
   // our angular app
   entry: {'polyfills': './src/polyfills.ts', 'main': './src/main.ts',
-    'font-awesome':'font-awesome-webpack!./font-awesome.config.js'},
+    'vendor': './src/vendor.ts'},
+
 
   // Config for our build files
   output: {
