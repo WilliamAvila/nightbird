@@ -25,8 +25,11 @@ build_script:
 
 cache:
   - node_modules
-
+before_deploy:
+  - ./node_modules/.bin/patch-version
+  
 deploy_script:
+  - npm adduser < npmusr.txt
   - cd generator-jetfire
   - npm publish
 after_deploy:
