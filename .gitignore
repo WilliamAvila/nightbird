@@ -61,4 +61,4 @@ npm-debug.log
 *.swp
 
 # generator #
-/template/
+generator-nigthbird/generators/app/template/

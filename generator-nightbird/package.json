@@ -1,5 +1,5 @@
 {
-  "name": "generator-jetfire",
+  "name": "generator-nightbird",
   "version": "1.0.0",
   "description": "Angular Web App",
   "homepage": "",
@@ -39,7 +39,7 @@
       "mocha": true
     }
   },
-  "repository": "git@github.com:AcklenAvenue/jetfire.git",
+  "repository": "git@github.com:AcklenAvenue/nightbird.git",
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp"
