@@ -7,7 +7,7 @@ First, install [Yeoman](http://yeoman.io) and generator-acklenavenue using [npm]
 
 ```bash
 npm install -g yo
-npm install -g generator-acklenavenue
+npm install -g generator-jetfire
 ```
 
 Then generate your new project:
@@ -22,7 +22,7 @@ Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he
 
 ## License
 
-Apache-2.0 © [Saul Mayorquin]()
+Apache-2.0 © [Acklen Avenue]()
 
 
 [npm-image]: https://badge.fury.io/js/generator-acklenavenue.svg

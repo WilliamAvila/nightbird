@@ -1,6 +1,6 @@
 {
   "name": "generator-jetfire",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Angular Web App",
   "homepage": "",
   "author": {
@@ -39,7 +39,7 @@
       "mocha": true
     }
   },
-  "repository": "git@github.com:AcklenAvenue/angular2-webpack-starter.git",
+  "repository": "git@github.com:AcklenAvenue/jetfire.git",
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp"
