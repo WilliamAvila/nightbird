@@ -29,12 +29,9 @@ before_deploy:
   - cd ..
   
 deploy_script:
-  - export $NPM_AUTH_TOKEN=e309d8bc-a393-4a28-a61d-0935ddfaf5b6
-  - export $NPM_EMAIL=developer@acklenavenue.com
-  - echo _auth = $NPM_AUTH_TOKEN > ~/.npmrc
-  - echo email = $NPM_EMAIL >> ~/.npmrc
+  - echo _auth = e309d8bc-a393-4a28-a61d-0935ddfaf5b6 > ~/.npmrc
+  - echo email = developer@acklenavenue.com >> ~/.npmrc
   - cd generator-jetfire
-  - npm version patch
   - npm publish
 after_deploy:
   
