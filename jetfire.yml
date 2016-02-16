@@ -23,7 +23,7 @@ cache:
   - node_modules  
 before_deploy:    
   - cd generator-jetfire
-  - npm version $(appveyor_build_version)
+  - ps: npm version $env:APPVEYOR_BUILD_VERSION
   - cd ..
   
 deploy_script:
