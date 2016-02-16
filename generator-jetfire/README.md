@@ -1,4 +1,4 @@
-# generator-acklenavenue [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# generator-acklenavenue [![NPM version][npm-image]][npm-url] [![Build Status][appveyor-image]][appveyor-url]
 > Angular Web App
 
 ## Installation
@@ -22,14 +22,10 @@ Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he
 
 ## License
 
-Apache-2.0 © [Acklen Avenue]()
+MIT © [Acklen Avenue]()
 
 
-[npm-image]: https://badge.fury.io/js/generator-acklenavenue.svg
-[npm-url]: https://npmjs.org/package/generator-acklenavenue
-[travis-image]: https://travis-ci.org//generator-acklenavenue.svg?branch=master
-[travis-url]: https://travis-ci.org//generator-acklenavenue
-[daviddm-image]: https://david-dm.org//generator-acklenavenue.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org//generator-acklenavenue
-[coveralls-image]: https://coveralls.io/repos//generator-acklenavenue/badge.svg
-[coveralls-url]: https://coveralls.io/r//generator-acklenavenue
+[npm-image]: https://badge.fury.io/js/generator-jetfire.svg
+[npm-url]: https://npmjs.org/package/generator-jetfire
+[appveyor-image]: https://ci.appveyor.com/api/projects/status/ph8v46gbsjmirblj/branch/master?svg=true
+[appveyor-url]: https://ci.appveyor.com/api/projects/status/ph8v46gbsjmirblj
