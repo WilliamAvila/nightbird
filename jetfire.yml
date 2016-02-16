@@ -1,7 +1,6 @@
 environment:
- matrix:
+  matrix:
     - nodejs_version: "5"
-  environment: dev
 version: 1.0.{build}
 branches:
   only:
