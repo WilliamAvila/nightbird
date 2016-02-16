@@ -23,7 +23,7 @@ cache:
   - node_modules  
 before_deploy:    
   - cd generator-jetfire
-  - npm version 1.0.{build}
+  - npm version "{version}"
   - cd ..
   
 deploy_script:
