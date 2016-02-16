@@ -1,4 +1,4 @@
-# generator-acklenavenue [![NPM version][npm-image]][npm-url] [![Build status](https://ci.appveyor.com/api/projects/status/ph8v46gbsjmirblj?svg=true)](https://ci.appveyor.com/project/bsommardahl/jetfire)
+# generator-nightbird [![NPM version][npm-image]][npm-url] [![Build status](https://ci.appveyor.com/api/projects/status/ph8v46gbsjmirblj?svg=true)](https://ci.appveyor.com/project/bsommardahl/jetfire)
 > Angular Web App
 
 ## Installation
