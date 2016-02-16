@@ -16,21 +16,21 @@ install:
 
 build_script:
   - gulp build
-  - cd generator-nigthbird
+  - cd generator-nightbird
   - npm install
   - cd ..  
 cache:
   - node_modules  
 before_deploy:    
-  - cd generator-nigthbird
+  - cd generator-nightbird
   - ps: npm version $env:APPVEYOR_BUILD_VERSION
   - cd ..
   
 deploy_script:
-  - cd generator-nigthbird
+  - cd generator-nightbird
   - npm publish
 after_deploy:
   
 notifications:
   - provider: Webhook
-    url: http://appharborservicehookendpoint.apphb.com/build/appveyor/nigthbird
+    url: http://appharborservicehookendpoint.apphb.com/build/appveyor/nightbird
