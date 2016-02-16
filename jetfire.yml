@@ -23,7 +23,7 @@ cache:
   - node_modules  
 before_deploy:    
   - cd generator-jetfire
-  - ./node_modules/.bin/patch-version
+  - node ./node_modules/.bin/patch-version
   - cd ..
   
 deploy_script:
