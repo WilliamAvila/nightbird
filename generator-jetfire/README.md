@@ -13,7 +13,7 @@ npm install -g generator-jetfire
 Then generate your new project:
 
 ```bash
-yo acklenavenue
+yo jetfire
 ```
 
 ## Getting To Know Yeoman
