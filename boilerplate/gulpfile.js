@@ -5,8 +5,9 @@ var WebpackDevServer = require("webpack-dev-server");
 var webpackDevConfig = require("./webpack.config.js");
 var webpackProdConfig = require("./webpack.prod.config.js");
 var webserver = require('gulp-webserver');
+var karmaServer = require('karma').Server;
 
-gulp.task('default', ['dev']);
+gulp.task('default', ['dev','tdd']);
 
 gulp.task('build_prod', function (callback) {
     // modify some webpack config options
@@ -61,4 +62,12 @@ gulp.task('prod', ['build_prod'], function (callback) {
             open: false,
             port: 8080
         }));
+});
+
+gulp.task('tdd',function (done) {
+  new karmaServer({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: false,
+    autoWatch:true
+  }, done).start();
 });
