@@ -17,7 +17,7 @@ module.exports = yeoman.generators.Base.extend({
             
             var prompts = [{
                 type: 'list',
-                name: 'css-framework',
+                name: 'cssframework',
                 message: 'Choose a CSS Framwork...',
                 choices: ['Bootstrap', 'Foundation']
             }];
@@ -41,19 +41,28 @@ module.exports = yeoman.generators.Base.extend({
                 '**/package.json',
                 '**/vendor.ts'
             ];
-            var _this = this;
+                var _this = this;
             
-        glob('**/*',{ignore:ignorefiles,cwd:this.templatePath()}, function(err, files) {
-	           files.forEach(function(element) {
-                   _this.fs.copy(_this.templatePath(element),_this.destinationPath(element));
-               }, this); 
-            
-        });  
-
-   
+                glob('**/*',{ignore:ignorefiles,cwd:this.templatePath()}, function(err, files) {
+                    files.forEach(function(element) {
+                       _this.fs.copy(_this.templatePath(element),_this.destinationPath(element));
+                    }, this); 
+                    
+                });
+                if(this.props.cssframework == 'Bootstrap'){
+                    console.log('bootstrap');
+                }else{
+                    console.log('foundation');
+                }
         }
-                        
     },
+                    
+                
+                
+                    
+                
+                
+            
 
     install: function () {
         //this.npmInstall()
