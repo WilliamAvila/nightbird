@@ -2,6 +2,8 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var glob = require("glob").Glob
+
 
 module.exports = yeoman.generators.Base.extend({
     prompting: function () {
@@ -12,32 +14,48 @@ module.exports = yeoman.generators.Base.extend({
             'Welcome to the excellent ' + chalk.red('generator-nightbird') + ' generator!'
 
             ));
-
-        done();
             
-        //     var prompts = [{
-        //         type: 'confirm',
-        //         name: 'someOption',
-        //         message: 'Would you like to enable this option?',
-        //         default: true
-        //     }];
-        // 
-        //     this.prompt(prompts, function (props) {
-        //         this.props = props;
-        //         // To access props later use this.props.someOption;
-        // 
-        //         done();
-        //     }.bind(this));
+            var prompts = [{
+                type: 'list',
+                name: 'css-framework',
+                message: 'Choose a CSS Framwork...',
+                choices: ['Bootstrap', 'Foundation']
+            }];
+        
+            this.prompt(prompts, function (props) {
+                 this.props = props;
+                 done();
+            }.bind(this));
     },
 
     writing:{
         src:function(){
-            this.fs.copy(this.templatePath(), this.destinationPath());
+            var ignorefiles = [
+                'for_bootstrap/*',
+                'for_foundation/*',
+                'for_bootstrap',
+                'for_foundation',
+                '**/app.scss',
+                '**/home.html',
+                '**/home.ts',
+                '**/package.json',
+                '**/vendor.ts'
+            ];
+            var _this = this;
+            
+        glob('**/*',{ignore:ignorefiles,cwd:this.templatePath()}, function(err, files) {
+	           files.forEach(function(element) {
+                   _this.fs.copy(_this.templatePath(element),_this.destinationPath(element));
+               }, this); 
+            
+        });  
+
+   
         }
                         
     },
 
     install: function () {
-        this.npmInstall()
+        //this.npmInstall()
     }
 });
