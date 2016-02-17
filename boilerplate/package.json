@@ -53,6 +53,7 @@
     "es7-reflect-metadata": "^1.5.5",
     "font-awesome": "^4.5.0",
     "font-awesome-webpack": "0.0.4",
+    "gulp": "^3.9.1",
     "less": "^2.6.0",
     "less-loader": "^2.2.2",
     "npm-run-all": "^1.5.1",
@@ -69,6 +70,8 @@
     "exports-loader": "^0.6.2",
     "expose-loader": "^0.7.1",
     "file-loader": "^0.8.5",
+    "gulp-util": "^3.0.7",
+    "gulp-webserver": "^0.9.1",
     "html-webpack-plugin": "^2.8.1",
     "http-server": "^0.8.5",
     "imports-loader": "^0.6.5",
@@ -113,7 +116,8 @@
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1",
     "webpack-fail-plugin": "^1.0.4",
-    "webpack-md5-hash": "^0.0.4"
+    "webpack-md5-hash": "^0.0.4",
+    "webpack-stream": "^3.1.0"
   },
   "repository": {
     "type": "git",
