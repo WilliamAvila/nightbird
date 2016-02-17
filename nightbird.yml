@@ -16,23 +16,21 @@ install:
 
 build_script:
   - gulp build
-  - cd generator-jetfire
+  - cd generator-nightbird
   - npm install
   - cd ..  
 cache:
   - node_modules  
 before_deploy:    
-  - cd generator-jetfire
+  - cd generator-nightbird
   - ps: npm version $env:APPVEYOR_BUILD_VERSION
   - cd ..
   
 deploy_script:
-  - echo _auth = e309d8bc-a393-4a28-a61d-0935ddfaf5b6 > ~/.npmrc
-  - echo email = developer@acklenavenue.com >> ~/.npmrc
-  - cd generator-jetfire
+  - cd generator-nightbird
   - npm publish
 after_deploy:
   
 notifications:
   - provider: Webhook
-    url: http://appharborservicehookendpoint.apphb.com/build/appveyor/jetfire
+    url: http://appharborservicehookendpoint.apphb.com/build/appveyor/nightbird
