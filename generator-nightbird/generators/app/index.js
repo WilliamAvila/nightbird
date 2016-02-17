@@ -43,16 +43,53 @@ module.exports = yeoman.generators.Base.extend({
             ];
                 var _this = this;
             
-                glob('**/*',{ignore:ignorefiles,cwd:this.templatePath()}, function(err, files) {
+                glob('**/*',{ignore:ignorefiles,cwd:this.templatePath(),nodir:true}, function(err, files) {
                     files.forEach(function(element) {
                        _this.fs.copy(_this.templatePath(element),_this.destinationPath(element));
                     }, this); 
-                    
                 });
                 if(this.props.cssframework == 'Bootstrap'){
-                    console.log('bootstrap');
+                    this.fs.copy(
+                        this.templatePath('for_bootstrap/home.html'),
+                        this.destinationPath('src/app/home/home.html')
+                    );
+                    this.fs.copy(
+                        this.templatePath('for_bootstrap/home.ts'),
+                        this.destinationPath('src/app/home/home.ts')
+                    );
+                    this.fs.copy(
+                        this.templatePath('for_bootstrap/vendor.ts'),
+                        this.destinationPath('src/vendor.ts')
+                    );
+                    this.fs.copy(
+                        this.templatePath('for_bootstrap/package.json'),
+                        this.destinationPath('package.json')
+                    );
+                    this.fs.copy(
+                        this.templatePath('for_bootstrap/app.scss'),
+                        this.destinationPath('src/app/app.scss')
+                    );
                 }else{
-                    console.log('foundation');
+                    this.fs.copy(
+                        this.templatePath('for_foundation/home.html'),
+                        this.destinationPath('src/app/home/home.html')
+                    );
+                    this.fs.copy(
+                        this.templatePath('for_foundation/home.ts'),
+                        this.destinationPath('src/app/home/home.ts')
+                    );
+                    this.fs.copy(
+                        this.templatePath('for_foundation/vendor.ts'),
+                        this.destinationPath('src/vendor.ts')
+                    );
+                    this.fs.copy(
+                        this.templatePath('for_foundation/package.json'),
+                        this.destinationPath('package.json')
+                    );
+                    this.fs.copy(
+                        this.templatePath('for_foundation/app.scss'),
+                        this.destinationPath('src/app/app.scss')
+                    );
                 }
         }
     },
