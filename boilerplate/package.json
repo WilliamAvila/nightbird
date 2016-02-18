@@ -53,6 +53,7 @@
     "font-awesome": "^4.5.0",
     "font-awesome-webpack": "0.0.4",
     "gulp": "^3.9.1",
+    "gulp-open": "^1.0.0",
     "less": "^2.6.0",
     "less-loader": "^2.2.2",
     "npm-run-all": "^1.5.1",
