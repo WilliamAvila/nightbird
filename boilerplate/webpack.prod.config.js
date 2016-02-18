@@ -65,7 +65,9 @@ module.exports = {
         test: /\.ts$/,
         loader: 'tslint-loader',
         exclude: [
-          root('node_modules')
+          root('node_modules'),
+          root('for_foundation'),
+          root('for_bootstrap')
         ]
       },
       {
@@ -81,7 +83,9 @@ module.exports = {
       {
         test: /\.async\.ts$/,
         loaders: ['es6-promise-loader', 'ts-loader'],
-        exclude: [/\.(spec|e2e)\.ts$/]
+        exclude: [/\.(spec|e2e)\.ts$/,
+        root('for_foundation'),
+        root('for_bootstrap')]
       },
       // Support for .ts files.
       {
@@ -94,7 +98,9 @@ module.exports = {
             'noEmitHelpers': true,
           }
         },
-        exclude: [/\.(spec|e2e|async)\.ts$/]
+        exclude: [/\.(spec|e2e|async)\.ts$/,
+        root('for_foundation'),
+        root('for_bootstrap')]
       },
 
       // Support for *.json files.
