@@ -12,7 +12,7 @@ import {Home} from './home/components/home';
  * Top Level Component
  */
 @Component({
-  selector: 'app',
+  selector: 'aa-app',
   providers: [ ...FORM_PROVIDERS ],
   directives: [ ...ROUTER_DIRECTIVES, RouterActive ],
   pipes: [],
