@@ -9,7 +9,7 @@ import {XLarge} from '../directives/x-large';
   // The selector is what angular internally uses
   // for `document.querySelectorAll(selector)` in our index.html
   // where, in this case, selector is the string 'app'
-  selector: 'home',  // <home></home>
+  selector: 'aa-home',  // <aa-home></aa-home>
   // We need to tell Angular's Dependency Injection which providers are in our app.
   providers: [
     Title
