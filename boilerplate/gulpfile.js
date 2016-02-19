@@ -8,6 +8,8 @@ var webpackProdConfig = require("./webpack.prod.config.js");
 var webserver = require('gulp-webserver');
 var karmaServer = require('karma').Server;
 var open = require('gulp-open');
+var imagemin = require('gulp-imagemin');
+var pngquant = require('imagemin-pngquant');
 
 gulp.task('default', ['dev', 'tdd','browser'], function () {
 });
@@ -64,6 +66,16 @@ gulp.task('testprod', function (callback) {
 });
 
 gulp.task('prod', ['build_prod'], function (callback) {
+    gulp.src('./src/assets/img/*')
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [
+                {removeViewBox: false},
+                {cleanupIDs: false}
+            ],
+            use: [pngquant()]
+        }))
+        .pipe(gulp.dest('dist/assets/img'));
     gulp.src('./dist')
         .pipe(webserver({
             fallback: 'index.html',
