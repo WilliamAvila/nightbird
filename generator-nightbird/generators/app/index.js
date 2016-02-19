@@ -98,9 +98,7 @@ module.exports = yeoman.generators.Base.extend({
                 'for_foundation',
                 '**/app.scss',
                 '**/home.html',
-                '**/home.ts',
                 '**/package.json',
-                '**/vendor.ts',
                 '**/metadata.json',
                 'node_modules/*',
                 'node_modules'
@@ -129,16 +127,8 @@ module.exports = yeoman.generators.Base.extend({
         framework:function(){
                 this.fs.copy(
                     this.templatePath(this.props.cssframework[0]+'/home.html'),
-                    this.destinationPath('src/app/home/home.html')
+                    this.destinationPath('src/app/home/components/home.html')
                         );
-                this.fs.copy(
-                    this.templatePath(this.props.cssframework[0]+'/home.ts'),
-                    this.destinationPath('src/app/home/home.ts')
-                );
-                this.fs.copy(
-                    this.templatePath(this.props.cssframework[0]+'/vendor.ts'),
-                    this.destinationPath('src/vendor.ts')
-                );
                 this.fs.copy(
                     this.templatePath(this.props.cssframework[0]+'/app.scss'),
                     this.destinationPath('src/app/app.scss')
