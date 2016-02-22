@@ -10,7 +10,7 @@ var karmaServer = require('karma').Server;
 var open = require('gulp-open');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
-var htmllint = require('gulp-htmllint');
+var htmlhint = require('gulp-htmlhint');
 var runSequence = require('run-sequence');
 
 gulp.task('default', ['dev', 'tdd','browser'], function () {
@@ -43,7 +43,7 @@ gulp.task('compile_prod',function (callback) {
     });
 });
 
-gulp.task('dev', function (callback) {
+gulp.task('dev',['lintHtmls'], function (callback) {
     var myConfig = Object.create(webpackDevConfig);
     // Start a webpack-dev-server
     new WebpackDevServer(webpack(myConfig), {
@@ -53,7 +53,7 @@ gulp.task('dev', function (callback) {
     });
 });
 
-gulp.task('testprod', function (callback) {
+gulp.task('testprod',['lintHtmls'], function (callback) {
     var myConfig = Object.create(webpackProdConfig);
     // Start a webpack-dev-server
     new WebpackDevServer(webpack(myConfig), {
@@ -68,7 +68,7 @@ gulp.task('testprod', function (callback) {
 });
 
 gulp.task('build_prod',function (callback) {
-    runSequence('compile_prod','imagemin',callback);
+    runSequence('lintHtmls','compile_prod','imagemin',callback);
 });
     
 gulp.task('prod', ['build_prod'], function (callback) {
@@ -100,4 +100,13 @@ gulp.task('tdd', function (done) {
         singleRun: false,
         autoWatch: true
     }, done).start();
+});
+
+gulp.task('lintHtmls', function () {
+    console.log('Linting HTML files');
+    return gulp
+        .src('./src/**/*.html')
+        .pipe(htmlhint('htmlhintrc.json'))
+        .pipe(htmlhint.reporter('htmlhint-stylish'))
+        .pipe(htmlhint.failReporter())
 });
