@@ -134,9 +134,12 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: 'src/assets',
-        to: 'assets'
+        to: 'assets',
       }
-    ]),
+    ],{
+        ignore:['*.jpg','*.png','*.jpeg','*.gif']
+    }),
+    
     // generating html
     new HtmlWebpackPlugin({template: 'src/index.html'}),
     new DefinePlugin({

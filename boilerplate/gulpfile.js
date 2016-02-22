@@ -10,6 +10,8 @@ var karmaServer = require('karma').Server;
 var open = require('gulp-open');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
+var htmllint = require('gulp-htmllint');
+var runSequence = require('run-sequence');
 
 gulp.task('default', ['dev', 'tdd','browser'], function () {
 });
@@ -20,7 +22,7 @@ gulp.task('browser', function () {
     gulp.src('')
         .pipe(open({ app: browser, uri: 'http://localhost:3000' }));
 });
-gulp.task('build_prod', function (callback) {
+gulp.task('compile_prod',function (callback) {
     // modify some webpack config options
     var myConfig = Object.create(webpackProdConfig);
     myConfig.plugins = myConfig.plugins.concat(
@@ -65,8 +67,22 @@ gulp.task('testprod', function (callback) {
     });
 });
 
+gulp.task('build_prod',function (callback) {
+    runSequence('compile_prod','imagemin',callback);
+});
+    
 gulp.task('prod', ['build_prod'], function (callback) {
-    gulp.src('./src/assets/img/*')
+    gulp.src('./dist')
+        .pipe(webserver({
+            fallback: 'index.html',
+            livereload: false,
+            open: false,
+            port: 8080
+        }));
+});
+
+gulp.task('imagemin',function () {
+    return gulp.src('./src/assets/img/*')
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [
@@ -76,14 +92,7 @@ gulp.task('prod', ['build_prod'], function (callback) {
             use: [pngquant()]
         }))
         .pipe(gulp.dest('dist/assets/img'));
-    gulp.src('./dist')
-        .pipe(webserver({
-            fallback: 'index.html',
-            livereload: false,
-            open: false,
-            port: 8080
-        }));
-});
+})
 
 gulp.task('tdd', function (done) {
     new karmaServer({
