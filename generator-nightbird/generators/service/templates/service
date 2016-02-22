@@ -1,0 +1,20 @@
+import {Injectable} from 'angular2/core';
+import {Http} from 'angular2/http';
+
+@Injectable()
+export class <%= classtitle %> {
+  value = 'Angular 2';
+  constructor(public http: Http) {
+
+  }
+
+  getData() {
+    console.log('<%= classtitle %>#getData(): Get Data');
+    // return this.http.get('/assets/data.json')
+    // .map(res => res.json());
+    return {
+      value: 'AngularClass'
+    };
+  }
+
+}
