@@ -18,14 +18,22 @@ module.exports = yeoman.generators.Base.extend({
             message: 'Component Title (home)',
             default: 'home'
         };
+        
+        var promtSelector = {
+            type: 'input',
+            name: 'selector',
+            message: 'Component Selector (aa-home)',
+            default: 'aa-home'
+        };
 
-        var prompts = [promtTitle];
+        var prompts = [promtTitle,promtSelector];
 
         this.prompt(prompts, function (props) {
             this.props = props;
             this.metadata = {
                 title: _.kebabCase(this.props.title),
-                classtitle: _.capitalize(this.props.title)
+                classtitle: _.capitalize(this.props.title),
+                selector: _.kebabCase(this.props.selector)
             }
             done();
         }.bind(this));
