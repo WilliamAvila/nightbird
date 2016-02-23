@@ -62,3 +62,6 @@ npm-debug.log
 
 # generator #
 generator-nightbird/generators/app/templates/
+
+# visual studio code #
+.vscode
