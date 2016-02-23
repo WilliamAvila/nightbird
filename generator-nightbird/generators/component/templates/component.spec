@@ -14,7 +14,6 @@ import {MockBackend} from 'angular2/http/testing';
 
 // Load the implementations that should be tested
 import {<%= classtitle %>} from './<%= title %>';
-import {Title} from '../services/title';
 
 describe('<%= classtitle %>', () => {
   // provide our implementations or mocks to the dependency injector
@@ -27,17 +26,11 @@ describe('<%= classtitle %>', () => {
       },
       deps: [MockBackend, BaseRequestOptions]
     }),
-
-    Title,
     <%= classtitle %>
   ]);
 
   it('should have default data', inject([ <%= classtitle %> ], (<%= title %>) => {
     expect(<%= title %>.data).toEqual({ value: '' });
-  }));
-
-  it('should have a title', inject([ <%= classtitle %> ], (<%= title %>) => {
-    expect(!!<%= title %>.title).toEqual(true);
   }));
 
   it('should log ngOnInit', inject([ <%= classtitle %> ], (<%= title %>) => {
