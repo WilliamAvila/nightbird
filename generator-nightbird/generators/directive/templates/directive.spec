@@ -14,7 +14,7 @@ import {MockBackend} from 'angular2/http/testing';
 // Load the implementations that should be tested
 import {<%= classtitle =>} from './<%= title =>';
 
-describe('x-large directive', () => {
+describe('<%= title => directive', () => {
   // Create a test component to test directives
   @Component({
     template: '',
