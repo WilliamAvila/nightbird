@@ -35,12 +35,16 @@ module.exports = yeoman.generators.Base.extend({
         
         service:function(){
                var template = this.templatePath('service');
-               var destination = this.destinationPath('src/app/home/services/'+this.metadata.title+'.ts');                
+              var currentDirectory = this.destinationRoot();
+            
+            var destination = this.destinationPath(currentDirectory + '/services/' + this.metadata.title + '.ts');            
                this.fs.copyTpl(template,destination,this.metadata);         
         },
         spec:function(){
-               var template = this.templatePath('service.spec');
-               var destination = this.destinationPath('src/specs/home/services/'+this.metadata.title+'.spec.ts'); 
+               var currentDirectory = this.destinationRoot();
+            var specDirectory = currentDirectory.replace('app', 'specs');            
+            var template = this.templatePath('service.spec');
+            var destination = this.destinationPath(specDirectory + '/services/' + this.metadata.title + '.spec.ts');
                this.fs.copyTpl(template,destination,this.metadata); 
         }
         

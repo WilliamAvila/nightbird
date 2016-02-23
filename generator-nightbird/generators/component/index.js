@@ -43,7 +43,7 @@ module.exports = yeoman.generators.Base.extend({
         },
         spec: function () {
             var currentDirectory = this.destinationRoot();
-            var specDirectory = currentDirectory.replace('app', 'specs');
+            var specDirectory = currentDirectory.replace('app', 'specs');            
             var template = this.templatePath('component.spec');
             var destination = this.destinationPath(specDirectory + '/components/' + this.metadata.title + '.spec.ts');
             this.fs.copyTpl(template, destination, this.metadata);
