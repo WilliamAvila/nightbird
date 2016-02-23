@@ -1,9 +1,9 @@
 {
     "rules": {
         "class-name": true,
-        "curly": false,
+        "curly": true,
         "eofline": true,
-        "indent": "spaces",
+        "indent": "tabs",
         "max-line-length": [
             true,
             100
@@ -14,11 +14,14 @@
             "static-before-instance",
             "variables-before-functions"
         ],
-        "no-arg": true,
+        "no-arg": false,
+        "no-bitwise":true,
+        "no-conditional-assignment": true,
+        "no-consecutive-blank-lines": true,
         "no-construct": true,
         "no-duplicate-key": true,
         "no-duplicate-variable": true,
-        "no-empty": false,
+        "no-empty": true,
         "no-eval": true,
         "no-trailing-comma": true,
         "no-trailing-whitespace": true,
