@@ -9,9 +9,7 @@
   "exclude": [
     "node_modules",
     "typings/main.d.ts",
-    "typings/main",
-    "for_foundation",
-    "for_bootstrap"
+    "typings/main"
   ],
   "filesGlob": [
     "./src/**/*.ts",
