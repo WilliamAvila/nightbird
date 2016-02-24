@@ -24,8 +24,7 @@ module.exports = {
   // cache: false,
 
   // our angular app
-  entry: {'polyfills': './src/polyfills.ts', 'main': './src/main.ts',
-    'vendor': './src/vendor.ts'},
+  entry: {'polyfills': './src/polyfills.ts', 'main': './src/main.ts', 'vendor': './src/vendor.ts'},
 
 
   // Config for our build files

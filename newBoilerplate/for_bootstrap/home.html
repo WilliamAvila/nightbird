@@ -1,0 +1,19 @@
+
+<div>
+  <span x-large >Your Content Here</span>
+  <input type="text" [value]="data.value" (input)="data.value = $event.target.value" autofocus>
+  <i class="fa fa-camera-retro fa-5x"></i> fa-5x
+  <!--
+    Rather than wiring up two-way data-binding ourselves
+    we can use Angular's [(ngModel)] syntax
+    <input type="text" [(ngModel)]="title.value">
+  -->
+  <div>
+    <span class="label label-default">Default</span>
+    <span class="label label-primary">Primary</span>
+    <span class="label label-success">Success</span>
+    <span class="label label-info">Info</span>
+    <span class="label label-warning">Warning</span>
+    <span class="label label-danger">Danger</span>
+</div>
+</div>

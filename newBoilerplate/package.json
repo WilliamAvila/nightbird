@@ -49,6 +49,8 @@
         "zone.js": "0.5.15"
     },
     "devDependencies": {
+        "font-awesome": "^4.5.0",
+        "font-awesome-webpack": "0.0.4",
         "gulp": "^3.9.1",
         "gulp-open": "^1.0.0",
         "less": "^2.6.0",
@@ -87,9 +89,11 @@
         "less-loader": "^2.2.2",
         "ncp": "^2.0.0",
         "node-sass": "^3.4.2",
+        "sass-loader": "^3.1.2",
         "phantomjs-polyfill": "0.0.1",
         "phantomjs-prebuilt": "^2.1.4",
         "protractor": "^3.1.1",
+        "postcss-loader": "^0.8.0",
         "raw-loader": "0.5.1",
         "reflect-metadata": "0.1.2",
         "remap-istanbul": "^0.5.1",

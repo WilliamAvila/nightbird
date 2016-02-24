@@ -8,7 +8,7 @@ var path = require('path');
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');
 var DefinePlugin  = require('webpack/lib/DefinePlugin');
 var ENV = process.env.ENV = process.env.NODE_ENV = 'test';
-
+var CleanPlugin = require('clean-webpack-plugin');
 /*
  * Config
  */
@@ -54,7 +54,11 @@ module.exports = {
       },
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.html$/, loader: 'raw-loader' },
-      { test: /\.css$/,  loader: 'raw-loader' }
+      { test: /\.css$/,  loader: 'raw-loader' },
+       {test: /\.scss$/, exclude: /node_modules/, loader: 'raw-loader!sass-loader!postcss-loader'},
+      {test: /\.less$/, loader: 'raw-loader!less'},
+      {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff"},
+      {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"}
     ],
     postLoaders: [
       // instrument only testing sources with Istanbul
@@ -76,6 +80,7 @@ module.exports = {
   stats: { colors: true, reasons: true },
   debug: false,
   plugins: [
+      new CleanPlugin('dist'),
     new DefinePlugin({
       // Environment helpers
       'process.env': {
@@ -93,6 +98,10 @@ module.exports = {
       'Reflect': 'es7-reflect-metadata/src/global/browser'
     })
   ],
+  tslint: {
+    emitErrors: true,
+    failOnHint: true
+  },
     // we need this due to problems with es6-shim
   node: {
     global: 'window',
