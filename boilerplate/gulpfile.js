@@ -12,17 +12,18 @@ var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
 var htmlhint = require('gulp-htmlhint');
 var runSequence = require('run-sequence');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
-gulp.task('default', ['dev', 'tdd','browser'], function () {
+gulp.task('default', ['dev', 'tdd', 'browser'], function (done) {
 });
 gulp.task('browser', function () {
     var browser = os.platform() === 'linux' ? 'google-chrome' : (
         os.platform() === 'darwin' ? 'google chrome' : (
             os.platform() === 'win32' ? 'chrome' : 'firefox'));
-    gulp.src('')
+    return gulp.src('')
         .pipe(open({ app: browser, uri: 'http://localhost:3000' }));
 });
-gulp.task('compile_prod',function (callback) {
+gulp.task('compile_prod', function (callback) {
     // modify some webpack config options
     var myConfig = Object.create(webpackProdConfig);
     myConfig.plugins = myConfig.plugins.concat(
@@ -43,7 +44,7 @@ gulp.task('compile_prod',function (callback) {
     });
 });
 
-gulp.task('dev',['lintHtmls'], function (callback) {
+gulp.task('dev', ['lintHtmls'], function (callback) {
     var myConfig = Object.create(webpackDevConfig);
     // Start a webpack-dev-server
     new WebpackDevServer(webpack(myConfig), {
@@ -53,7 +54,7 @@ gulp.task('dev',['lintHtmls'], function (callback) {
     });
 });
 
-gulp.task('testprod',['lintHtmls'], function (callback) {
+gulp.task('prod:test', ['lintHtmls'], function (callback) {
     var myConfig = Object.create(webpackProdConfig);
     // Start a webpack-dev-server
     new WebpackDevServer(webpack(myConfig), {
@@ -67,10 +68,10 @@ gulp.task('testprod',['lintHtmls'], function (callback) {
     });
 });
 
-gulp.task('build_prod',function (callback) {
-    runSequence('lintHtmls','compile_prod','imagemin',callback);
+gulp.task('build_prod', function (callback) {
+    return runSequence('lintHtmls', 'compile_prod', 'imagemin', callback);
 });
-    
+
 gulp.task('prod', ['build_prod'], function (callback) {
     gulp.src('./dist')
         .pipe(webserver({
@@ -81,13 +82,13 @@ gulp.task('prod', ['build_prod'], function (callback) {
         }));
 });
 
-gulp.task('imagemin',function () {
+gulp.task('imagemin', function () {
     return gulp.src('./src/assets/img/*')
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [
-                {removeViewBox: false},
-                {cleanupIDs: false}
+                { removeViewBox: false },
+                { cleanupIDs: false }
             ],
             use: [pngquant()]
         }))

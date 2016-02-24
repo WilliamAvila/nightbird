@@ -6,9 +6,8 @@
 var path = require('path');
 // Webpack Plugins
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');
-var DefinePlugin = require('webpack/lib/DefinePlugin');
+var DefinePlugin  = require('webpack/lib/DefinePlugin');
 var ENV = process.env.ENV = process.env.NODE_ENV = 'test';
-var failPlugin = require('webpack-fail-plugin');
 var CleanPlugin = require('clean-webpack-plugin');
 /*
  * Config
@@ -16,7 +15,7 @@ var CleanPlugin = require('clean-webpack-plugin');
 module.exports = {
   resolve: {
     cache: false,
-    extensions: prepend(['.ts', '.js', '.json', '.css', '.html'], '.async') // ensure .async.ts etc also works
+    extensions: prepend(['.ts','.js','.json','.css','.html'], '.async') // ensure .async.ts etc also works
   },
   devtool: 'inline-source-map',
   module: {
@@ -40,7 +39,7 @@ module.exports = {
       {
         test: /\.async\.ts$/,
         loaders: ['es6-promise-loader', 'ts-loader'],
-        exclude: [/\.(spec|e2e)\.ts$/]
+        exclude: [ /\.(spec|e2e)\.ts$/ ]
       },
       {
         test: /\.ts$/,
@@ -51,12 +50,12 @@ module.exports = {
             "removeComments": true,
           }
         },
-        exclude: [/\.e2e\.ts$/]
+        exclude: [ /\.e2e\.ts$/ ]
       },
-      {test: /\.json$/, loader: 'json-loader'},
-      {test: /\.html$/, loader: 'raw-loader'},
-      {test: /\.css$/, loader: 'raw-loader'},
-      {test: /\.scss$/, exclude: /node_modules/, loader: 'raw-loader!sass-loader!postcss-loader'},
+      { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.html$/, loader: 'raw-loader' },
+      { test: /\.css$/,  loader: 'raw-loader' },
+       {test: /\.scss$/, exclude: /node_modules/, loader: 'raw-loader!sass-loader!postcss-loader'},
       {test: /\.less$/, loader: 'raw-loader!less'},
       {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff"},
       {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"}
@@ -78,11 +77,10 @@ module.exports = {
       root('angular2/bundles')
     ]
   },
-  stats: {colors: true, reasons: true},
+  stats: { colors: true, reasons: true },
   debug: false,
   plugins: [
-    new CleanPlugin('dist'),
-    failPlugin,
+      new CleanPlugin('dist'),
     new DefinePlugin({
       // Environment helpers
       'process.env': {
@@ -104,7 +102,7 @@ module.exports = {
     emitErrors: true,
     failOnHint: true
   },
-  // we need this due to problems with es6-shim
+    // we need this due to problems with es6-shim
   node: {
     global: 'window',
     progress: false,
@@ -129,11 +127,9 @@ function rootNode(args) {
 
 function prepend(extensions, args) {
   args = args || [];
-  if (!Array.isArray(args)) {
-    args = [args]
-  }
-  return extensions.reduce(function (memo, val) {
-    return memo.concat(val, args.map(function (prefix) {
+  if (!Array.isArray(args)) { args = [args] }
+  return extensions.reduce(function(memo, val) {
+    return memo.concat(val, args.map(function(prefix) {
       return prefix + val
     }));
   }, ['']);
