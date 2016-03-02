@@ -1,8 +1,8 @@
 // @AngularClass
-var path = require('path');
 
 module.exports = function(config) {
   var testWebpackConfig = require('./webpack.test.config.js');
+
   config.set({
 
     // base path that will be used to resolve all patterns (e.g. files, exclude)
@@ -79,7 +79,7 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: [
-      'Chrome',
+       'Chrome',
       'PhantomJS'
     ],
 

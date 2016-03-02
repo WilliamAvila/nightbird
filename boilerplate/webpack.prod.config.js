@@ -4,7 +4,7 @@
  * Helper: root(), and rootDir() are defined at the bottom
  */
 var path = require('path');
-var zlib = require('zlib');
+var helpers = require('./helpers');
 // Webpack Plugins
 var webpack = require('webpack');
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');
@@ -16,8 +16,8 @@ var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 var CompressionPlugin = require('compression-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CleanPlugin = require('clean-webpack-plugin');
 var WebpackMd5Hash = require('webpack-md5-hash');
+var CleanPlugin = require('clean-webpack-plugin');
 var ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 var HOST = process.env.HOST || 'localhost';
 var PORT = process.env.PORT || 8080;
@@ -33,21 +33,23 @@ var metadata = {
 /*
  * Config
  */
-module.exports = {
+module.exports = helpers.validate({
     // static data for index.html
     metadata: metadata,
-    // for faster builds use 'eval'
-    devtool: 'eval',
+
+    devtool: 'source-map',
+    cache: false,
     debug: false,
 
     entry: {
         'polyfills': './src/polyfills.ts',
-        'main': './src/main.ts' // our angular app
+        'main': './src/main.ts', // our angular app
+        'vendor': './src/vendor.ts'
     },
 
     // Config for our build files
     output: {
-        path: root('dist'),
+        path: helpers.root('dist'),
         filename: '[name].[chunkhash].bundle.js',
         sourceMapFilename: '[name].[chunkhash].bundle.map',
         chunkFilename: '[id].[chunkhash].chunk.js'
@@ -56,7 +58,7 @@ module.exports = {
     resolve: {
         cache: false,
         // ensure loader extensions match
-        extensions: prepend(['.ts', '.js', '.json', '.css', '.html'], '.async') // ensure .async.ts etc also works
+        extensions: ['', '.ts', '.js']
     },
 
     module: {
@@ -65,28 +67,21 @@ module.exports = {
                 test: /\.ts$/,
                 loader: 'tslint-loader',
                 exclude: [
-                    root('node_modules'),
+                    helpers.root('node_modules'),
                     root('for_foundation'),
                     root('for_bootstrap')
                 ]
             },
             {
                 test: /\.js$/,
-                loader: "source-map-loader",
+                loader: 'source-map-loader',
                 exclude: [
-                    root('node_modules/rxjs')
+                    helpers.root('node_modules/rxjs')
                 ]
             }
         ],
         loaders: [
             // Support Angular 2 async routes via .async.ts
-            {
-                test: /\.async\.ts$/,
-                loaders: ['es6-promise-loader', 'ts-loader'],
-                exclude: [/\.(spec|e2e)\.ts$/,
-                    root('for_foundation'),
-                    root('for_bootstrap')]
-            },
             // Support for .ts files.
             {
                 test: /\.ts$/,
@@ -98,25 +93,38 @@ module.exports = {
                         'noEmitHelpers': true,
                     }
                 },
-                exclude: [/\.(spec|e2e|async)\.ts$/,
+                exclude: [
+                    /\.(spec|e2e)\.ts$/,
                     root('for_foundation'),
-                    root('for_bootstrap')]
+                    root('for_bootstrap')
+                ]
             },
 
             // Support for *.json files.
-            { test: /\.json$/, loader: 'json-loader' },
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
+            },
 
             // Support for CSS as raw text
-            { test: /\.css$/, loader: 'raw-loader' },
+            {
+                test: /\.css$/,
+                loader: 'raw-loader'
+            },
 
             // support for .html as raw text
-            { test: /\.html$/, loader: 'raw-loader', exclude: [root('src/index.html')] },
+            {
+                test: /\.html$/,
+                loader: 'raw-loader',
+                exclude: [
+                    helpers.root('src/index.html')
+                ]
+            },
             { test: /\.scss$/, exclude: /node_modules/, loader: 'raw-loader!sass-loader!postcss-loader' },
             { test: /\.less$/, loader: 'raw-loader!less' },
             { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
             { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
 
-            // if you add a loader include the file extension
         ]
     },
 
@@ -152,8 +160,7 @@ module.exports = {
             '__decorate': 'ts-helper/decorate',
             '__awaiter': 'ts-helper/awaiter',
             '__extends': 'ts-helper/extends',
-            '__param': 'ts-helper/param',
-            'Reflect': 'es7-reflect-metadata/src/global/browser'
+            '__param': 'ts-helper/param'
         }),
         new UglifyJsPlugin({
             // to debug prod builds uncomment //debug lines and comment //prod lines
@@ -177,7 +184,7 @@ module.exports = {
         }),
         // include uglify in production
         new CompressionPlugin({
-            algorithm: gzipMaxLevel,
+            algorithm: helpers.gzipMaxLevel,
             regExp: /\.css$|\.html$|\.js$|\.map$/,
             threshold: 2 * 1024
         })
@@ -185,7 +192,16 @@ module.exports = {
     // Other module loader config
     tslint: {
         emitErrors: true,
-        failOnHint: true
+        failOnHint: true,
+        resourcePath: 'src',
+    },
+
+    htmlLoader: {
+        minimize: true,
+        removeAttributeQuotes: false,
+        caseSensitive: true,
+        customAttrSurround: [[/#/, /(?:)/], [/\*/, /(?:)/], [/\[?\(?/, /(?:)/]],
+        customAttrAssign: [/\)?\]?=/]
     },
     // don't use devServer for production
 
@@ -198,29 +214,9 @@ module.exports = {
         clearImmediate: false,
         setImmediate: false
     }
-};
-
-// Helper functions
-function gzipMaxLevel(buffer, callback) {
-    return zlib['gzip'](buffer, { level: 9 }, callback)
-}
+});
 
 function root(args) {
     args = Array.prototype.slice.call(arguments, 0);
     return path.join.apply(path, [__dirname].concat(args));
-}
-
-function rootNode(args) {
-    args = Array.prototype.slice.call(arguments, 0);
-    return root.apply(path, ['node_modules'].concat(args));
-}
-
-function prepend(extensions, args) {
-    args = args || [];
-    if (!Array.isArray(args)) { args = [args] }
-    return extensions.reduce(function (memo, val) {
-        return memo.concat(val, args.map(function (prefix) {
-            return prefix + val
-        }));
-    }, ['']);
 }
