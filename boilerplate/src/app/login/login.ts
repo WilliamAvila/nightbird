@@ -15,7 +15,7 @@ export class Login {
 
     lock = new Auth0Lock('m3xNJ6C4oXkezrkuh3uYKxkDADrxkmEy', 'acklenavenue.auth0.com');
 
-    constructor(public http: Http, public authHttp: AuthHttp, public router: Router) { }
+    constructor(public router: Router) { }
 
     login() {
         this.lock.show((err: string, profile: string, id_token: string) => {
