@@ -8,6 +8,7 @@ import {FORM_PROVIDERS} from 'angular2/common';
 import {RouterActive} from './directives/router-active';
 import {Home} from './home/components/home';
 import {Login} from './login/login';
+import {Logout} from './login/logout';
 /*
  * App Component
  * Top Level Component
@@ -15,7 +16,7 @@ import {Login} from './login/login';
 @Component({
     selector: 'aa-app',
     providers: [...FORM_PROVIDERS],
-    directives: [...ROUTER_DIRECTIVES, RouterActive],
+    directives: [...ROUTER_DIRECTIVES, RouterActive, Logout],
     pipes: [],
     styles: [`
     nav ul {
@@ -34,11 +35,10 @@ import {Login} from './login/login';
   `],
     template: `
     <header>
-      <nav>
-      </nav>
     </header>
 
     <main>
+        <logout></logout>
       <router-outlet>
         <login></login>
       </router-outlet>
@@ -54,7 +54,7 @@ import {Login} from './login/login';
     { path: '/login', component: Login, name: 'Login' },
     { path: '/home', component: Home, name: 'Home' },
     // Async load a component using Webpack's require with es6-promise-loader
-    { path: '/**', redirectTo: ['Login'] }
+    { path: '/**', redirectTo: ['Login'] },
 ])
 export class App {
     angularclassLogo = 'assets/img/angularclass-avatar.png';
