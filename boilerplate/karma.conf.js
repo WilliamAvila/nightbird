@@ -35,19 +35,19 @@ module.exports = function(config) {
       ],
             check: {
                 global: {
-                    statements: 50,
+                    statements: 0,
                     branches: 0,
-                    functions: 50,
-                    lines: 50,
+                    functions: 0,
+                    lines: 0,
                     excludes: [
                         'src/app/directives/router-active.js'
                     ]
                 },
                 each: {
-                    statements: 50,
-                    branches: 50,
-                    functions: 50,
-                    lines: 50,
+                    statements: 0,
+                    branches: 0,
+                    functions: 0,
+                    lines: 0,
                     excludes: [
                         'src/app/directives/router-active.ts'
                     ]
