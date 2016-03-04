@@ -1,23 +1,24 @@
 /*
  * Angular 2 decorators and services
  */
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {FORM_PROVIDERS} from 'angular2/common';
 
 import {RouterActive} from './directives/router-active';
 import {Home} from './home/components/home';
-
+import {Login} from './login/login';
+import {Logout} from './login/logout';
 /*
  * App Component
  * Top Level Component
  */
 @Component({
-  selector: 'aa-app',
-  providers: [ ...FORM_PROVIDERS ],
-  directives: [ ...ROUTER_DIRECTIVES, RouterActive ],
-  pipes: [],
-  styles: [`
+    selector: 'aa-app',
+    providers: [...FORM_PROVIDERS],
+    directives: [...ROUTER_DIRECTIVES, RouterActive, Logout],
+    pipes: [],
+    styles: [`
     nav ul {
       display: inline;
       list-style-type: none;
@@ -32,46 +33,36 @@ import {Home} from './home/components/home';
       background-color: lightgray;
     }
   `],
-  template: `
+    template: `
     <header>
-      <nav>
-        <h1>Hello {{ name }}</h1>
-        <ul>
-          <li router-active>
-            <a [routerLink]=" ['Index'] ">Index</a>
-          </li>
-          <li router-active>
-            <a [routerLink]=" ['Home'] ">Home</a>
-          </li>
-        </ul>
-      </nav>
     </header>
 
     <main>
-      <router-outlet></router-outlet>
+        <logout></logout>
+      <router-outlet>
+        <login></login>
+      </router-outlet>
     </main>
 
     <footer>
-      WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a>
-      <div>
-        <img [src]="angularclassLogo" width="10%">
-      </div>
+      
     </footer>
   `
 })
 @RouteConfig([
-  { path: '/', component: Home, name: 'Index' },
-  { path: '/home', component: Home, name: 'Home' },
-  // Async load a component using Webpack's require with es6-promise-loader
-  { path: '/**', redirectTo: ['Index'] }
+    { path: '/', redirectTo: ['Login']},
+    { path: '/login', component: Login, name: 'Login' },
+    { path: '/home', component: Home, name: 'Home' },
+    // Async load a component using Webpack's require with es6-promise-loader
+    { path: '/**', redirectTo: ['Login'] },
 ])
 export class App {
-  angularclassLogo = 'assets/img/angularclass-avatar.png';
-  name = 'Angular 2 Webpack Starter';
-  url = 'https://twitter.com/AngularClass';
-  constructor() {
+    angularclassLogo = 'assets/img/angularclass-avatar.png';
+    name = 'Angular 2 Webpack Starter';
+    url = 'https://twitter.com/AngularClass';
+    constructor() {
 
-  }
+    }
 }
 
 /*
@@ -80,5 +71,4 @@ export class App {
  * (The examples may not be updated as quickly. Please open an issue on github for us to update it)
  * For help or questions please contact us at @AngularClass on twitter
  * or our chat on Slack at https://AngularClass.com/slack-join
- * or via chat on Gitter at https://gitter.im/AngularClass/angular2-webpack-starter
  */
