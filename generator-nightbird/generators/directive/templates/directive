@@ -1,18 +1,18 @@
 import {Directive, Component, ElementRef, Renderer} from 'angular2/core';
 /*
  * Directive
- * <%= classtitle => is a simple directive to show how one is made
+ * <%= classtitle %> is a simple directive to show how one is made
  */
 @Directive({
-  selector: '[<%= selector =>]' // using [ ] means selecting attributes
+  selector: '[<%= selector %>]' // using [ ] means selecting attributes
 })
-export class <%= classtitle => {
+export class <%= classtitle %> {
   constructor(element: ElementRef, renderer: Renderer) {
     // simple DOM manipulation to set font size to x-large
     // `nativeElement` is the direct reference to the DOM element
     // element.nativeElement.style.fontSize = 'x-large';
 
     // for server/webworker support use the renderer
-    renderer.setElementStyle(element.nativeElement, 'fontSize', '<%= title =>);
+    renderer.setElementStyle(element.nativeElement, 'fontSize', '<%= title %>);
   }
 }
