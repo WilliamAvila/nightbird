@@ -60,7 +60,7 @@ export class App {
     angularclassLogo = 'assets/img/angularclass-avatar.png';
     name = 'Angular 2 Webpack Starter';
     url = 'https://twitter.com/AngularClass';
-    constructor(public router: Router) {
+    constructor() {
 
     }
 }

@@ -39,6 +39,6 @@ export class Home {
     data = { value: '' };
     initialized: boolean;
     // TypeScript public modifiers
-    constructor(public title: Title, public router: Router) {
+    constructor(public title: Title) {
     }
 }
