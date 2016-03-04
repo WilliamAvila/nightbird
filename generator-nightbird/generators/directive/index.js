@@ -7,11 +7,11 @@ var _ = require('lodash');
 
 
 module.exports = yeoman.generators.Base.extend({
-    
-    
+
+
     prompting: function () {
         var done = this.async();
-            
+
             var promtTitle = {
                 type: 'input',
                 name: 'title',
@@ -21,8 +21,8 @@ module.exports = yeoman.generators.Base.extend({
             var promtSelector = {
             type: 'input',
             name: 'selector',
-            message: 'Component Selector (aa-home)',
-            default: 'aa-home'
+            message: 'Directive Selector (aa-dir)',
+            default: 'aa-dir'
         };
             
             var prompts = [promtTitle,promtSelector];
@@ -31,7 +31,8 @@ module.exports = yeoman.generators.Base.extend({
                  this.props = props;
                  this.metadata =  {
                    title : _.kebabCase(this.props.title),
-                   classtitle : _.capitalize(this.props.title)
+                   classtitle : _.capitalize(this.props.title),
+                   selector: _.kebabCase(this.props.selector)
                }
                  done();
             }.bind(this));

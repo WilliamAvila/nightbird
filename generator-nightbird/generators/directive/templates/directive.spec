@@ -12,22 +12,22 @@ import {BaseRequestOptions, Http} from 'angular2/http';
 import {MockBackend} from 'angular2/http/testing';
 
 // Load the implementations that should be tested
-import {<%= classtitle =>} from './<%= title =>';
+import {<%= classtitle %>} from './<%= title %>';
 
-describe('<%= title => directive', () => {
+describe('<%= title %> directive', () %> {
   // Create a test component to test directives
   @Component({
     template: '',
-    directives: [ <%= classtitle => ]
+    directives: [ <%= classtitle %> ]
   })
   class TestComponent {}
 
-  it('should sent font-size to <%= title =>', injectAsync([TestComponentBuilder], (tcb) => {
-    return tcb.overrideTemplate(TestComponent, '<div <%= title =>>Content</div>')
-      .createAsync(TestComponent).then((fixture: any) => {
+  it('should sent font-size to <%= title %>', injectAsync([TestComponentBuilder], (tcb) %> {
+    return tcb.overrideTemplate(TestComponent, '<div <%= title %>>Content</div>')
+      .createAsync(TestComponent).then((fixture: any) %> {
         fixture.detectChanges();
         let compiled = fixture.debugElement.nativeElement.children[0];
-        expect(compiled.style.fontSize).toBe('<%= title =>');
+        expect(compiled.style.fontSize).toBe('<%= title %>');
       });
   }));
 
