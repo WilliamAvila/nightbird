@@ -1,11 +1,10 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
 import {isLoggedIn} from '../../common/is_logged_in';
 import {Title} from '../services/title';
 import {XLarge} from '../directives/x-large';
 import {Router, CanActivate, ComponentInstruction} from 'angular2/router';
 import { AuthHttp, tokenNotExpired} from 'angular2-jwt';
-import {Logout} from '../../login/logout';
 
 @Component({
     // The selector is what angular internally uses
@@ -20,7 +19,6 @@ import {Logout} from '../../login/logout';
     // Doing so will allow Angular to attach our behavior to an element
     directives: [
         ...FORM_DIRECTIVES,
-        Logout,
         XLarge
     ],
     // We need to tell Angular's compiler which custom pipes are in our template.
@@ -34,15 +32,11 @@ import {Logout} from '../../login/logout';
     return isLoggedIn(next, previous);
 })
 
-export class Home implements OnInit {
+export class Home {
     // Set our default values
     data = { value: '' };
     initialized: boolean;
     // TypeScript public modifiers
-    constructor(public title: Title, private router: Router) {
-    }
-    ngOnInit() {
-        if (!tokenNotExpired())
-            this.router.navigate(['/Login']);
+    constructor(public title: Title) {
     }
 }

@@ -9,13 +9,14 @@ import {RouterActive} from './directives/router-active';
 import {Home} from './home/components/home';
 import {Login} from './login/login';
 import {Logout} from './login/logout';
+import {IsLoggedService} from './login/login.service';
 /*
  * App Component
  * Top Level Component
  */
 @Component({
     selector: 'aa-app',
-    providers: [...FORM_PROVIDERS],
+    providers: [...FORM_PROVIDERS, IsLoggedService],
     directives: [...ROUTER_DIRECTIVES, RouterActive, Logout],
     pipes: [],
     styles: [`
@@ -38,8 +39,8 @@ import {Logout} from './login/logout';
     </header>
 
     <main>
-        <logout></logout>
       <router-outlet>
+        <logout></logout>
         <login></login>
       </router-outlet>
     </main>
@@ -52,9 +53,9 @@ import {Logout} from './login/logout';
 @RouteConfig([
     { path: '/', redirectTo: ['Home'] },
     { path: '/login', component: Login, name: 'Login' },
-    { path: '/home', component: Home, name: 'Home',  },
+    { path: '/home', component: Home, name: 'Home', },
     // Async load a component using Webpack's require with es6-promise-loader
-    { path: '/**', redirectTo: ['Login'] },
+    { path: '/**', redirectTo: ['Home'] },
 ])
 export class App {
     angularclassLogo = 'assets/img/angularclass-avatar.png';
