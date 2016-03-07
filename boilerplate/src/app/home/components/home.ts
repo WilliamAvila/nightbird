@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
 import {isLoggedIn} from '../../common/is_logged_in';
 import {Title} from '../services/title';
@@ -34,11 +34,15 @@ import {Logout} from '../../login/logout';
     return isLoggedIn(next, previous);
 })
 
-export class Home {
+export class Home implements OnInit {
     // Set our default values
     data = { value: '' };
     initialized: boolean;
     // TypeScript public modifiers
-    constructor(public title: Title) {
+    constructor(public title: Title, private router: Router) {
+    }
+    ngOnInit() {
+        if (!tokenNotExpired())
+            this.router.navigate(['/Login']);
     }
 }

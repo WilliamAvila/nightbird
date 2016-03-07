@@ -50,9 +50,9 @@ import {Logout} from './login/logout';
   `
 })
 @RouteConfig([
-    { path: '/', redirectTo: ['Login']},
+    { path: '/', redirectTo: ['Home'] },
     { path: '/login', component: Login, name: 'Login' },
-    { path: '/home', component: Home, name: 'Home' },
+    { path: '/home', component: Home, name: 'Home',  },
     // Async load a component using Webpack's require with es6-promise-loader
     { path: '/**', redirectTo: ['Login'] },
 ])
