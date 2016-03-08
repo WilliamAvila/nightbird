@@ -3,66 +3,64 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var _ = require('lodash');
-var folderSelector =  require('../../helpers/folderSelector');
+var folderSelector = require('../../helpers/folderSelector');
 
 
 module.exports = yeoman.generators.Base.extend({
 
 
-		prompting: function () {
+		prompting: function() {
 				var done = this.async();
-        var _prompt = this.prompt;
-        var _props = this.props;
-        var me = this;
-        folderSelector.findAllFoldersInApp ( this.destinationRoot(),function (directoriesInAppFolder) {
+    var me = this;
+    folderSelector.findAllFoldersInApp(this.destinationRoot(), function(directoriesInAppFolder) {
 
-          if(!directoriesInAppFolder.err){
-            var promtTitle = {
-						type: 'input',
-						name: 'title',
-						message: 'Component Title (home)',
-						default: 'home'
-				};
+      if (!directoriesInAppFolder.err) {
+        var promtTitle = {
+          type: 'input',
+          name: 'title',
+          message: 'Component Title (home)',
+          default: 'home'
+        };
 
-				var promtSelector = {
-						type: 'input',
-						name: 'selector',
-						message: 'Component Selector (aa-home)',
-						default: 'aa-home'
-				};
+        var promtSelector = {
+          type: 'input',
+          name: 'selector',
+          message: 'Component Selector (aa-home)',
+          default: 'aa-home'
+        };
 
         var promtFolder = {
-                type: 'list',
-                name: 'componentFolder',
-                message: 'Choose the folder create the component...',
-                choices: directoriesInAppFolder.directories
-            }
+          type: 'list',
+          name: 'componentFolder',
+          message: 'Choose the folder create the component...',
+          choices: directoriesInAppFolder.directories
+        }
 
-				var prompts = [promtTitle,promtSelector, promtFolder];
+        var prompts = [promtTitle, promtSelector, promtFolder];
 
-				me.prompt(prompts, function (props) {
-					me.props = props;
-						this.metadata = {
-								title: _.kebabCase(me.props.title),
-								classtitle: _.capitalize(me.props.title),
-								selector: _.kebabCase(me.props.selector)
+        me.prompt(prompts, function(props) {
+          me.props = props;
+          this.metadata = {
+            title: _.kebabCase(me.props.title),
+            classtitle: _.capitalize(me.props.title),
+            selector: _.kebabCase(me.props.selector)
 
-						}
-						done();
-				}.bind(me));
-
-          } else {
-            console.log(directoriesInAppFolder.err);
-            done();
           }
+          done();
+        }.bind(me));
 
-        })
+      } else {
+        console.log(directoriesInAppFolder.err);
+        done();
+      }
+
+    })
 
 		},
 
 		writing: {
 
-				service: function () {
+				service: function() {
 						var template = this.templatePath('component');
 
 						var currentDirectory = this.props.componentFolder
@@ -70,9 +68,9 @@ module.exports = yeoman.generators.Base.extend({
 						var destination = this.destinationPath(currentDirectory + '/components/' + this.metadata.title + '.ts');
 						this.fs.copyTpl(template, destination, this.metadata);
 				},
-				spec: function () {
+				spec: function() {
 
-            var template = this.templatePath('component.spec');
+      var template = this.templatePath('component.spec');
 						var currentDirectory = this.props.componentFolder
 						var destination = this.destinationPath(currentDirectory + '/components/' + this.metadata.title + '.spec.ts');
 						this.fs.copyTpl(template, destination, this.metadata);
@@ -80,6 +78,6 @@ module.exports = yeoman.generators.Base.extend({
 
 		},
 
-		install: function () {
+		install: function() {
 		}
 });
