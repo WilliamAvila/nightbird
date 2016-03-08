@@ -12,7 +12,7 @@ module.exports = yeoman.generators.Base.extend({
         this.log(yosay(
             'Welcome to the excellent ' + chalk.red('generator-nightbird') + ' generator!'
             ));
-            
+
             var promtTitle = {
                 type: 'input',
                 name: 'title',
@@ -31,16 +31,16 @@ module.exports = yeoman.generators.Base.extend({
                 message: 'Host (localhost)',
                 default: 'localhost'
             };
-            
+
             var promtPort = {
                 type: 'input',
                 name: 'port',
                 message: 'Port (3000)',
                 default: '3000'
             };
-            
-            
-            
+
+
+
             var promtFramework = {
                 type: 'list',
                 name: 'cssframework',
@@ -52,7 +52,7 @@ module.exports = yeoman.generators.Base.extend({
                             {
                                 dep: 'bootstrap',
                                 ver: '^3.3.6'
-                            
+
                             },{
                                 dep: 'bootstrap-sass',
                                 ver: '^3.3.6'  
@@ -80,7 +80,7 @@ module.exports = yeoman.generators.Base.extend({
                     }]
             }
             
-            var prompts = [promtTitle,promtBaseUrl,promtHost,promtPort,promtFramework];
+            var prompts = [promtTitle,promtBaseUrl,promtHost,promtPort];
         
             this.prompt(prompts, function (props) {
                  this.props = props;
@@ -96,9 +96,6 @@ module.exports = yeoman.generators.Base.extend({
                 'for_foundation/*',
                 'for_bootstrap',
                 'for_foundation',
-                '**/app.scss',
-                '**/home.html',
-                '**/package.json',
                 '**/metadata.json',
                 'node_modules/*',
                 'node_modules'
@@ -122,25 +119,6 @@ module.exports = yeoman.generators.Base.extend({
                 }
             this.fs.writeJSON('metadata.json', metadata);    
                 
-        },
-        
-        framework:function(){
-                this.fs.copy(
-                    this.templatePath(this.props.cssframework[0]+'/home.html'),
-                    this.destinationPath('src/app/home/components/home.html')
-                        );
-                this.fs.copy(
-                    this.templatePath(this.props.cssframework[0]+'/app.scss'),
-                    this.destinationPath('src/app/app.scss')
-                );
-        },
-        framworkJSON:function(){
-           var packagejson= this.fs.readJSON(this.templatePath('package.json'));
-           
-           this.props.cssframework[1].forEach(function(element) {
-               packagejson.dependencies[element.dep] = element.ver;
-           }, this);
-           this.fs.writeJSON('package.json', packagejson);
         }
         
     },
