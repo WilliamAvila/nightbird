@@ -3,8 +3,6 @@ import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Http} from 'angular2/http';
 import {FORM_PROVIDERS} from 'angular2/common';
 import {AuthHttp, tokenNotExpired, JwtHelper} from 'angular2-jwt';
-import {IsLoggedService} from './login.service';
-
 declare var Auth0Lock;
 
 @Component({
@@ -16,7 +14,7 @@ export class Login implements OnInit {
 
     lock = new Auth0Lock('m3xNJ6C4oXkezrkuh3uYKxkDADrxkmEy', 'acklenavenue.auth0.com');
 
-    constructor(private router: Router, private isLoggedService: IsLoggedService) { }
+    constructor(private router: Router) { }
 
     ngOnInit() {
         this.lock.show((err: string, profile: string, id_token: string) => {
@@ -25,9 +23,7 @@ export class Login implements OnInit {
             }
             localStorage.setItem('profile', JSON.stringify(profile));
             localStorage.setItem('id_token', id_token);
-            console.log('logged in');
-            this.isLoggedService.loggedIn();
-            this.router.navigate(['/Home']);
+            this.router.parent.navigate(['/Home']);
         });
     }
 

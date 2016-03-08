@@ -8,16 +8,14 @@ import {FORM_PROVIDERS} from 'angular2/common';
 import {RouterActive} from './directives/router-active';
 import {Home} from './home/components/home';
 import {Login} from './login/login';
-import {Logout} from './login/logout';
-import {IsLoggedService} from './login/login.service';
 /*
  * App Component
  * Top Level Component
  */
 @Component({
     selector: 'aa-app',
-    providers: [...FORM_PROVIDERS, IsLoggedService],
-    directives: [...ROUTER_DIRECTIVES, RouterActive, Logout],
+    providers: [...FORM_PROVIDERS],
+    directives: [...ROUTER_DIRECTIVES, RouterActive],
     pipes: [],
     styles: [`
     nav ul {
@@ -40,13 +38,10 @@ import {IsLoggedService} from './login/login.service';
 
     <main>
       <router-outlet>
-        <logout></logout>
-        <login></login>
       </router-outlet>
     </main>
 
     <footer>
-      
     </footer>
   `
 })
@@ -62,7 +57,6 @@ export class App {
     name = 'Angular 2 Webpack Starter';
     url = 'https://twitter.com/AngularClass';
     constructor() {
-
     }
 }
 
