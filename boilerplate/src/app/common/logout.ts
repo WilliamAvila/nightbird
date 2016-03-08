@@ -10,15 +10,16 @@ declare var Auth0Lock;
     selector: 'logout',
     directives: [ROUTER_DIRECTIVES],
     template: `
-        <button *ngIf="loggedIn()" (click)="logout()">Logout</button>
+        <button (click)="logout()">Logout</button>
     `
 })
 export class Logout {
-    constructor(public router: Router) { }
+    constructor(private router: Router) {
+    }
     logout() {
         localStorage.removeItem('profile');
         localStorage.removeItem('id_token');
-        this.router.navigate(['./Login']);
+        this.router.navigate(['../Login']);
     }
     loggedIn() {
         return tokenNotExpired();

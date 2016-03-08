@@ -8,7 +8,6 @@ import {FORM_PROVIDERS} from 'angular2/common';
 import {RouterActive} from './directives/router-active';
 import {Home} from './home/components/home';
 import {Login} from './login/login';
-import {Logout} from './login/logout';
 /*
  * App Component
  * Top Level Component
@@ -16,7 +15,7 @@ import {Logout} from './login/logout';
 @Component({
     selector: 'aa-app',
     providers: [...FORM_PROVIDERS],
-    directives: [...ROUTER_DIRECTIVES, RouterActive, Logout],
+    directives: [...ROUTER_DIRECTIVES, RouterActive],
     pipes: [],
     styles: [`
     nav ul {
@@ -38,30 +37,26 @@ import {Logout} from './login/logout';
     </header>
 
     <main>
-        <logout></logout>
       <router-outlet>
-        <login></login>
       </router-outlet>
     </main>
 
     <footer>
-      
     </footer>
   `
 })
 @RouteConfig([
-    { path: '/', redirectTo: ['Login']},
+    { path: '/', redirectTo: ['Home'] },
     { path: '/login', component: Login, name: 'Login' },
-    { path: '/home', component: Home, name: 'Home' },
+    { path: '/home', component: Home, name: 'Home', },
     // Async load a component using Webpack's require with es6-promise-loader
-    { path: '/**', redirectTo: ['Login'] },
+    { path: '/**', redirectTo: ['Home'] },
 ])
 export class App {
     angularclassLogo = 'assets/img/angularclass-avatar.png';
     name = 'Angular 2 Webpack Starter';
     url = 'https://twitter.com/AngularClass';
     constructor() {
-
     }
 }
 
