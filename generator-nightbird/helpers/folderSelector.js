@@ -72,9 +72,4 @@ var folderSelector = {
   getDirectories: getDirectories
 }
 
-console.log('log del directorio' + __dirname);
-folderSelector.findAllFoldersInApp(function respones(res) {
-  console.log('Retorna valores: ' + JSON.stringify(res));
-})
-
 module.exports = folderSelector;
