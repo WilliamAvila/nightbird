@@ -32,13 +32,13 @@ function createFoldersInAppDirectory(appDirectory) {
   })
 }
 
-function findAllFoldersInApp(callback) {
+function findAllFoldersInApp(_currentPath,callback) {
   var response = {
     err: null,
     directories: []
   };
-  var currentPath = __dirname;
-  var appDirectory = __dirname + '/src/app';
+  var currentPath = _currentPath;
+  var appDirectory = _currentPath + '/src/app';
 
   fs.accessSync
   fs.access(appDirectory, fs.F_OK, function(err) {
@@ -48,6 +48,7 @@ function findAllFoldersInApp(callback) {
       callback(response)
 
     } else {
+      console.log(currentPath);
       appDirectory = findDirectoryRecursive(currentPath, 'app');
 
       if (appDirectory) {
