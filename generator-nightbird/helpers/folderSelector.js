@@ -28,7 +28,7 @@ function getDirectories(srcpath) {
 function createFoldersInAppDirectory(appDirectory) {
   var folders = getDirectories(appDirectory);
   return _.map(folders, function creatRoutAndName(folder) {
-    return { name: folder, path: appDirectory + '/' + folder }
+    return { name: folder, value: appDirectory + '/' + folder }
   })
 }
 

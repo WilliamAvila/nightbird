@@ -29,7 +29,14 @@ module.exports = yeoman.generators.Base.extend({
 						default: 'aa-home'
 				};
 
-				var prompts = [promtTitle,promtSelector];
+        var promtFolder = {
+                type: 'list',
+                name: 'componentFolder',
+                message: 'Choose the folder create the component...',
+                choices: directoriesInAppFolder.directories
+            }
+
+				var prompts = [promtTitle,promtSelector, promtFolder];
 
 				this.prompt(prompts, function (props) {
 						this.props = props;
@@ -37,6 +44,7 @@ module.exports = yeoman.generators.Base.extend({
 								title: _.kebabCase(this.props.title),
 								classtitle: _.capitalize(this.props.title),
 								selector: _.kebabCase(this.props.selector)
+
 						}
 						done();
 				}.bind(this));
@@ -55,7 +63,7 @@ module.exports = yeoman.generators.Base.extend({
 				service: function () {
 						var template = this.templatePath('component');
 
-						var currentDirectory = this.destinationRoot();
+						var currentDirectory = this.props.componentFolder
 
 						var destination = this.destinationPath(currentDirectory + '/components/' + this.metadata.title + '.ts');
 						this.fs.copyTpl(template, destination, this.metadata);
