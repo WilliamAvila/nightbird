@@ -10,7 +10,7 @@ module.exports = yeoman.generators.Base.extend({
 
 
 		prompting: function() {
-				var done = this.async();
+		var done = this.async();
     var me = this;
     folderSelector.findAllFoldersInApp(this.destinationRoot(), function(directoriesInAppFolder) {
 
@@ -62,9 +62,7 @@ module.exports = yeoman.generators.Base.extend({
 
 				service: function() {
 						var template = this.templatePath('component');
-
-						var currentDirectory = this.props.componentFolder
-
+						var currentDirectory = this.props.componentFolder;
 						var destination = this.destinationPath(currentDirectory + '/components/' + this.metadata.title + '.ts');
 						this.fs.copyTpl(template, destination, this.metadata);
 				},
