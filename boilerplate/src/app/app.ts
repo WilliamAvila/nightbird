@@ -8,7 +8,6 @@ import {FORM_PROVIDERS} from 'angular2/common';
 import {RouterActive} from './directives/router-active';
 import {Home} from './home/components/home';
 import {Login} from './login/login';
-var css = require('./app.less');
 /*
  * App Component
  * Top Level Component
