@@ -5,8 +5,8 @@ import {Title} from '../services/title';
 import {XLarge} from '../directives/x-large';
 import {Router, CanActivate, ComponentInstruction} from 'angular2/router';
 import { AuthHttp, tokenNotExpired} from 'angular2-jwt';
-import {Logout} from '../../common/logout';
 import {Menu} from '../../menu/menu';
+import {TopNav} from '../../top_nav/top_nav';
 
 @Component({
     // The selector is what angular internally uses
@@ -20,7 +20,7 @@ import {Menu} from '../../menu/menu';
     // We need to tell Angular's compiler which directives are in our template.
     // Doing so will allow Angular to attach our behavior to an element
     directives: [
-        ...FORM_DIRECTIVES, Logout, Menu,
+        ...FORM_DIRECTIVES, Menu, TopNav,
         XLarge
     ],
     // We need to tell Angular's compiler which custom pipes are in our template.
