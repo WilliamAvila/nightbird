@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from 'angular2/core';
-import {User} from '../user';
+import {User} from '../../user';
 import {COMMON_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {EditUser} from '../edit/edit';
 import {DeleteUser} from '../delete/delete';

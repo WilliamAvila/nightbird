@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from 'angular2/core';
-import {User} from '../user';
+import {User} from '../../user';
 
 @Component({
     selector: 'user-create',

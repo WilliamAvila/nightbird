@@ -1,7 +1,7 @@
 import {Component, OnInit} from 'angular2/core';
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
-import {CreateUser} from './create/create';
-import {ListUsers} from './list/list';
+import {CreateUser} from './component/create/create';
+import {ListUsers} from './component/list/list';
 /*
  * App Component
  * Top Level Component
