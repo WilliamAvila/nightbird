@@ -37,7 +37,6 @@ import {TopNav} from '../../layout/top_nav/aa-top-nav';
 @CanActivate((next: ComponentInstruction, previous: ComponentInstruction) => {
     return isLoggedIn(next, previous);
 })
-
 export class Home {
     // Set our default values
     data = { value: '' };

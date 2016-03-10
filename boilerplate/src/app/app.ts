@@ -8,6 +8,7 @@ import {FORM_PROVIDERS} from 'angular2/common';
 import {RouterActive} from './directives/router-active';
 import {Home} from './home/components/home';
 import {Login} from './login/login';
+import {UserComponent} from './users/user.component';
 /*
  * App Component
  * Top Level Component
@@ -48,7 +49,8 @@ import {Login} from './login/login';
 @RouteConfig([
     { path: '/', redirectTo: ['Home'] },
     { path: '/login', component: Login, name: 'Login' },
-    { path: '/home', component: Home, name: 'Home', },
+    { path: '/users/...', component: UserComponent, name: 'User' },
+    {path: '/home', component: Home, name: 'Home', },
     // Async load a component using Webpack's require with es6-promise-loader
     { path: '/**', redirectTo: ['Home'] },
 ])
