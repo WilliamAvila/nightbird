@@ -2,12 +2,12 @@ import {Component, OnInit, OnDestroy} from 'angular2/core';
 import {User} from '../user';
 
 @Component({
-    selector: 'user-view',
-    template: require('./view.html'),
-    styles: [require('./view.scss')]
+    selector: 'edit-user',
+    template: `<button type="button" class="secondary button">Edit</button>`,
+    styles: [require('../../app.scss')]
 })
 
-export class ViewUsers implements OnInit, OnDestroy {
+export class EditUser implements OnInit, OnDestroy {
     constructor() {}
     ngOnInit() { console.log('ngOnInit'); }
     ngOnDestroy() { console.log('ngOnDestroy'); }

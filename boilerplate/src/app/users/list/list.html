@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="medium-3 medium-centered">
+        <h1>Users</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="row">
+        <table class="hover stack">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>LastName</th>
+                    <th>Age</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tr *ngFor="#user of Users">
+                <td>{{ user.Name }}</td>
+                <td>{{ user.LastName }}</td>
+                <td>{{ user.Age }}</td>
+                <td class="button-group">
+                    <edit-user></edit-user>
+                    <delete-user></delete-user>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
