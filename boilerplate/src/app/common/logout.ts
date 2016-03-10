@@ -10,8 +10,9 @@ declare var Auth0Lock;
     selector: 'logout',
     directives: [ROUTER_DIRECTIVES],
     template: `
-        <button (click)="logout()">Logout</button>
-    `
+        <button type="button" class="button" (click)="logout()">Logout</button>
+    `,
+    styles: [require('./logout.scss')]
 })
 export class Logout {
     constructor(private router: Router) {
