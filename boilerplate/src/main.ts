@@ -7,6 +7,9 @@ import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2
 import {HTTP_PROVIDERS, Http} from 'angular2/http';
 import {AuthHttp, AuthConfig} from 'angular2-jwt';
 import {appInjector} from './app/common/app_injector';
+import 'script!jquery';
+import 'script!what-input';
+import 'script!foundation-sites';
 /*
  * App Environment Providers
  * providers that only live in certain environment

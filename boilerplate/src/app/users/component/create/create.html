@@ -1,4 +1,4 @@
-<form [ngFormModel]="createForm" (ngSubmit)="createUser(createForm.value)">
+<form data-abide [ngFormModel]="createForm" (ngSubmit)="createUser(createForm.value)">
     <div class="row">
         <div class="medium-3 medium-centered">
             <h1>Create User</h1>
@@ -37,6 +37,14 @@
                 <input id="Website" placeholder="Website" type="text" [ngFormControl]="createForm.controls['website']">
             </div>
         </div>
+        <div data-abide-error class="alert callout">
+            <p><i class="fi-alert"></i> There are some errors in your form.</p>
+        </div>
+        <label>
+            Name
+            <input type="text" required>
+            <span class="form-error">This field is required.</span>
+        </label>
         <div class="row">
             <div class="medium-6 medium-centered">
                 <button type="submit" class="success button">Create</button>

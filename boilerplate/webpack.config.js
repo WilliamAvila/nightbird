@@ -30,7 +30,11 @@ module.exports = helpers.validate({
     // cache: false,
 
     // our angular app
-    entry: { 'polyfills': './src/polyfills.ts', 'main': './src/main.ts', 'vendor': './src/vendor.ts' },
+    entry: { 'polyfills': './src/polyfills.ts', 'main': './src/main.ts',
+     "externalLibraries": [
+        "./node_modules/foundation-sites/dist/foundation.min.js"
+    ],
+     'vendor': './src/vendor.ts' },
 
     // Config for our build files
     output: {
@@ -86,6 +90,11 @@ module.exports = helpers.validate({
                 'NODE_ENV': JSON.stringify(metadata.ENV),
                 'HMR': HMR
             }
+        }),
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            $: 'jquery',
+            jquery: 'jquery'
         })
     ],
 
