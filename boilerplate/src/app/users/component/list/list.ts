@@ -4,6 +4,7 @@ import {COMMON_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/comm
 import {EditUser} from '../edit/edit';
 import {DeleteUser} from '../delete/delete';
 import {UserService} from '../../services/user.service';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'user-list',
@@ -15,13 +16,14 @@ import {UserService} from '../../services/user.service';
 
 export class ListUsers implements OnInit, OnDestroy {
     Users: User[];
+    private GetUsers: Subscription;
     constructor(private userService: UserService) {
         this.Users = Array<User>();
     }
     ngOnInit() {
-        this.userService.get().subscribe((res: User[]) => {
+        this.GetUsers = this.userService.get().subscribe((res: User[]) => {
             this.Users = res;
         });
     }
-    ngOnDestroy() { console.log('ngOnDestroy'); }
+    ngOnDestroy() { this.GetUsers.unsubscribe(); }
 }
