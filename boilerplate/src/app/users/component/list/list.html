@@ -9,15 +9,18 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>LastName</th>
-                    <th>Age</th>
-                    <th></th>
+                    <th>UserName</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Website</th>
                 </tr>
             </thead>
             <tr *ngFor="#user of Users">
-                <td>{{ user.Name }}</td>
-                <td>{{ user.LastName }}</td>
-                <td>{{ user.Age }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.website }}</td>
                 <td class="button-group">
                     <edit-user></edit-user>
                     <delete-user></delete-user>

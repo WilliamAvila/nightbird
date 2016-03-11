@@ -9,6 +9,6 @@ import {User} from '../../user';
 
 export class CreateUser implements OnInit, OnDestroy {
     constructor() {}
-    ngOnInit() { console.log('ngOnInit'); }
-    ngOnDestroy() { console.log('ngOnDestroy'); }
+    ngOnInit() {  }
+    ngOnDestroy() {  }
 }

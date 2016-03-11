@@ -4,17 +4,15 @@ import {Observable, BehaviorSubject} from 'rxjs';
 import {User} from '../user';
 
 @Injectable()
-export class ComponentService {
+export class UserService {
     serviceData: Object[];
     constructor(public http: Http) {
     }
-    get(): Observable<any> {
+    get(): Observable<User[]> {
         return this.http.get('http://jsonplaceholder.typicode.com/users')
             .map((response: Response) => {
-                return (<any>response.json()).items.map(item => {
-                    return new User(item.id, item.name, item.username,
-                        item.email, item.phone, item.website);
-                });
+                let data = <User[]>response.json();
+                return data;
             });
     }
 }
