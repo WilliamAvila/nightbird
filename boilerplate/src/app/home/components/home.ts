@@ -3,7 +3,9 @@ import {FORM_DIRECTIVES} from 'angular2/common';
 import {isLoggedIn} from '../../common/is_logged_in';
 import {Title} from '../services/title';
 import {XLarge} from '../directives/x-large';
-import {Router, CanActivate, ComponentInstruction} from 'angular2/router';
+import {ROUTER_DIRECTIVES,
+    ROUTER_BINDINGS,
+    Router, RouteConfig, CanActivate, ComponentInstruction} from 'angular2/router';
 import { AuthHttp, tokenNotExpired} from 'angular2-jwt';
 import {Logout} from '../../common/logout';
 import {Sidebar} from '../../layout/sidebar/aa-sidebar';

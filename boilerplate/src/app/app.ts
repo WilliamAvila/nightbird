@@ -18,21 +18,7 @@ import {UserComponent} from './users/user.component';
     providers: [...FORM_PROVIDERS],
     directives: [...ROUTER_DIRECTIVES, RouterActive],
     pipes: [],
-    styles: [`
-    nav ul {
-      display: inline;
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      width: 60px;
-    }
-    nav li {
-      display: inline;
-    }
-    nav li.active {
-      background-color: lightgray;
-    }
-  `],
+    styles: [],
     template: `
     <header>
     </header>
