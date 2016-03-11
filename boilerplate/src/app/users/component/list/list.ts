@@ -17,8 +17,6 @@ export class ListUsers implements OnInit, OnDestroy {
         this.Users = Array<User>();
     }
     ngOnInit() {
-        this.Users[0] = new User('Dante', 'Dubon', 19, '0');
-        this.Users[1] = new User('Edward', 'Siwady', 20, '1');
     }
     ngOnDestroy() { console.log('ngOnDestroy'); }
 }

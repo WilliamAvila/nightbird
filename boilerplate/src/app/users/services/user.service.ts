@@ -9,10 +9,11 @@ export class ComponentService {
     constructor(public http: Http) {
     }
     get(): Observable<any> {
-        return this.http.get('http://jsonplaceholder.typicode.com/posts/1')
+        return this.http.get('http://jsonplaceholder.typicode.com/users')
             .map((response: Response) => {
                 return (<any>response.json()).items.map(item => {
-                    return new User(item.name, item.lastName, item.age, item.id);
+                    return new User(item.id, item.name, item.username,
+                        item.email, item.phone, item.website);
                 });
             });
     }

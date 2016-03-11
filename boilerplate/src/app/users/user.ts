@@ -1,12 +1,42 @@
+export interface Geo {
+    lat: string;
+    lng: string;
+}
+
+export interface Address {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: Geo;
+}
+
+export interface Company {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+}
+
 export class User {
-    Id: string;
-    Name: string;
-    LastName: string;
-    Age: number;
-    constructor(name: string, lastName: string, age: number, id?: string) {
-        this.Id = id || '';
-        this.Name = name;
-        this.LastName = lastName;
-        this.Age = age;
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+    phone: string;
+    website: string;
+    company: Company;
+    address: Address;
+
+    constructor(userId: number, name: string, username: string,
+        email: string, phone: string, website: string, address?: Address,
+        company?: Company) {
+        this.id = userId;
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.address = address;
+        this.phone = phone;
+        this.website = website;
+        this.company = company;
     }
 }
