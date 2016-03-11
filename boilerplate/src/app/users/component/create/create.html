@@ -1,35 +1,46 @@
-<div class="row">
-    <div class="medium-3 medium-centered">
-        <h1>Create User</h1>
-    </div>
-</div>
-<div class="row">
+<form [ngFormModel]="createForm" (ngSubmit)="createUser(createForm.value)">
     <div class="row">
-        <div class="medium-6 medium-centered">
-            <label>Name
-                <input placeholder="Name" type="text">
-            </label>
+        <div class="medium-3 medium-centered">
+            <h1>Create User</h1>
         </div>
     </div>
+    <div class="row">
+        <div class="row">
+            <div class="medium-6 medium-centered">
+                <label for="Name">Name</label>
+                <input id="Name" placeholder="Name" type="text" [ngFormControl]="createForm.controls['name']">
+            </div>
+        </div>
 
-    <div class="row">
-        <div class="medium-6 medium-centered">
-            <label>Last Name
-                <input placeholder="Last Name" type="text">
-            </label>
+        <div class="row">
+            <div class="medium-6 medium-centered">
+                <label for="UserName">UserName</label>
+                <input id="UserName" placeholder="UserName" type="text" [ngFormControl]="createForm.controls['username']">
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="medium-6 medium-centered">
-            <label>Age
-                <input placeholder="Age" type="date">
-            </label>
+        <div class="row">
+            <div class="medium-6 medium-centered">
+                <label for="Email">Email</label>
+                <input id="Email" placeholder="Email" type="text" [ngFormControl]="createForm.controls['email']">
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-6 medium-centered">
+                <label for="Phone">Phone</label>
+                <input id="Phone" placeholder="Phone" type="text" [ngFormControl]="createForm.controls['phone']">
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-6 medium-centered">
+                <label for="Website">Website</label>
+                <input id="Website" placeholder="Website" type="text" [ngFormControl]="createForm.controls['website']">
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-6 medium-centered">
+                <button type="submit" class="success button">Create</button>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="medium-6 medium-centered">
-            <button type="button" class="success button">Create</button>
-        </div>
-    </div>
-</div>
+</form>
