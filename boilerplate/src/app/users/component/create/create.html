@@ -8,8 +8,13 @@
     <div class="row medium-6 medium-centered">
         <div class="row">
             <div>
-                <label for="Name">Name</label>
-                <input id="Name" placeholder="Name" type="text" [ngFormControl]="createForm.controls['name']">
+                <label [class.is-invalid-label]="!createForm.find('name').valid && createForm.find('name').touched" for="Name">Name
+                    <input id="Name" [class.is-invalid-input]="!createForm.find('name').valid && createForm.find('name').touched" 
+                    #name="ngForm"
+                    placeholder="Name" type="text" [ngFormControl]="createForm.controls['name']">
+                    <div *ngIf="!name.control.valid && name.control.touched" class="form-error is-visible">Name invalid</div>
+                   
+                </label>
             </div>
         </div>
 
