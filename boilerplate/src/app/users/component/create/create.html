@@ -1,54 +1,51 @@
-<form data-abide [ngFormModel]="createForm" (ngSubmit)="createUser(createForm.value)">
+<form data-abide novalidate [ngFormModel]="createForm" (ngSubmit)="createUser(createForm.value)">
+
     <div class="row">
         <div class="medium-3 medium-centered">
             <h1>Create User</h1>
         </div>
     </div>
-    <div class="row">
+    <div class="row medium-6 medium-centered">
         <div class="row">
-            <div class="medium-6 medium-centered">
+            <div>
                 <label for="Name">Name</label>
                 <input id="Name" placeholder="Name" type="text" [ngFormControl]="createForm.controls['name']">
             </div>
         </div>
 
         <div class="row">
-            <div class="medium-6 medium-centered">
+            <div>
                 <label for="UserName">UserName</label>
                 <input id="UserName" placeholder="UserName" type="text" [ngFormControl]="createForm.controls['username']">
             </div>
         </div>
 
         <div class="row">
-            <div class="medium-6 medium-centered">
+            <div>
                 <label for="Email">Email</label>
                 <input id="Email" placeholder="Email" type="text" [ngFormControl]="createForm.controls['email']">
             </div>
         </div>
         <div class="row">
-            <div class="medium-6 medium-centered">
+            <div>
                 <label for="Phone">Phone</label>
                 <input id="Phone" placeholder="Phone" type="text" [ngFormControl]="createForm.controls['phone']">
             </div>
         </div>
         <div class="row">
-            <div class="medium-6 medium-centered">
+            <div>
                 <label for="Website">Website</label>
                 <input id="Website" placeholder="Website" type="text" [ngFormControl]="createForm.controls['website']">
             </div>
         </div>
-        <div data-abide-error class="alert callout">
-            <p><i class="fi-alert"></i> There are some errors in your form.</p>
-        </div>
-        <label>
-            Name
-            <input type="text" required>
-            <span class="form-error">This field is required.</span>
-        </label>
-        <div class="row">
-            <div class="medium-6 medium-centered">
-                <button type="submit" class="success button">Create</button>
+        <div *ngIf="!createForm.valid && createForm.dirty" class="row">
+            <div data-abide-error class="alert callout">
+                <p>There are some errors in your form.</p>
             </div>
         </div>
+        <div class="row">
+            <button type="submit" [disabled]="!createForm.valid" class="success button">Submit</button>
+        </div>
+
     </div>
 </form>
