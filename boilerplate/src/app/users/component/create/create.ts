@@ -2,12 +2,13 @@ import {Component, OnInit, OnDestroy} from 'angular2/core';
 import {} from 'angular2/forms';
 import {User} from '../../user';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators} from 'angular2/common';
+import {Router} from 'angular2/router';
 
 @Component({
     selector: 'user-create',
     template: require('./create.html'),
     styles: [require('./create.scss')],
-    directives: [FORM_DIRECTIVES]
+    directives: [FORM_DIRECTIVES],
 })
 
 export class CreateUser implements OnInit, OnDestroy {

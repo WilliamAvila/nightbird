@@ -5,19 +5,20 @@ import {EditUser} from '../edit/edit';
 import {DeleteUser} from '../delete/delete';
 import {UserService} from '../../services/user.service';
 import {Subscription} from 'rxjs';
+import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
     selector: 'user-list',
     template: require('./list.html'),
     providers: [UserService],
-    directives: [FORM_DIRECTIVES, EditUser, DeleteUser],
+    directives: [FORM_DIRECTIVES, EditUser, DeleteUser, ROUTER_DIRECTIVES],
     styles: [require('./list.scss')]
 })
 
 export class ListUsers implements OnInit, OnDestroy {
     Users: User[];
     private GetUsers: Subscription;
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService, private router: Router) {
         this.Users = Array<User>();
     }
     ngOnInit() {
@@ -26,4 +27,7 @@ export class ListUsers implements OnInit, OnDestroy {
         });
     }
     ngOnDestroy() { this.GetUsers.unsubscribe(); }
+    goToCreateUser(event: any) {
+        this.router.navigateByUrl('users/create');
+    }
 }

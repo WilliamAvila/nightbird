@@ -1,3 +1,12 @@
 @import "settings";
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
+
+.aa-invalid-input{
+    label{
+        @extend .is-invalid-label;
+        input{
+             @extend .is-invalid-input;
+        }
+    }
+}
