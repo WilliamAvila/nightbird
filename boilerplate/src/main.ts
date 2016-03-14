@@ -10,6 +10,7 @@ import {appInjector} from './app/common/app_injector';
 import 'script!jquery';
 import 'script!what-input';
 import 'script!foundation-sites';
+import {CommonInjectables} from './app/common/common.injectables';
 /*
  * App Environment Providers
  * providers that only live in certain environment
@@ -44,7 +45,8 @@ export function main() {
                 return new AuthHttp(new AuthConfig(), http);
             },
             deps: [Http]
-        })
+        }),
+        CommonInjectables
     ]).then((appRef: ngCore.ComponentRef) => {
         // store a reference to the application injector
         appInjector(appRef.injector);
