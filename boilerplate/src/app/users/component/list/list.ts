@@ -1,7 +1,7 @@
 import {Component, OnInit, OnDestroy} from 'angular2/core';
 import {User} from '../../user';
 import {COMMON_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
-import {EditUser} from '../edit/edit';
+import {EditUser, isEditable} from '../edit/edit';
 import {DeleteUser} from '../delete/delete';
 import {UserService} from '../../services/user.service';
 import {Subscription} from 'rxjs';
@@ -28,6 +28,9 @@ export class ListUsers implements OnInit, OnDestroy {
     }
     ngOnDestroy() { this.GetUsers.unsubscribe(); }
     goToCreateUser(event: any) {
-        this.router.navigateByUrl('users/create');
+        this.router.navigateByUrl('home/users/create');
+    }
+    goToEditUser(user: User) {
+        this.router.navigate(['/Home/User/EditUser', { user: user }]);
     }
 }
