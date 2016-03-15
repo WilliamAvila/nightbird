@@ -17,9 +17,10 @@ import {ListUsers} from './component/list/list';
   `
 })
 @RouteConfig([
-    { path: '/', component: ListUsers, name: 'ViewUsers', useAsDefault: true },
+    { path: '/list', component: ListUsers, name: 'ListUsers', useAsDefault: true },
     { path: '/create', component: CreateUser, name: 'CreateUser' }
 ])
 export class UserComponent {
-    constructor() { }
+    constructor() {
+     }
 }

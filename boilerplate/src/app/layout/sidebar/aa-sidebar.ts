@@ -10,7 +10,4 @@ import {Router, ROUTER_DIRECTIVES } from 'angular2/router';
 })
 export class Sidebar {
     constructor(private router: Router) { }
-    goToUsers() {
-        this.router.navigateByUrl('../users/list/list');
-    }
 }
