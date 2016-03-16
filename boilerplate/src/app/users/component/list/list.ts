@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from 'angular2/core';
+import {Component, OnInit, OnDestroy, Inject} from 'angular2/core';
 import {User} from '../../user';
 import {COMMON_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {EditUser, isEditable} from '../edit/edit';
@@ -10,7 +10,6 @@ import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
 @Component({
     selector: 'user-list',
     template: require('./list.html'),
-    providers: [UserService],
     directives: [FORM_DIRECTIVES, EditUser, DeleteUser, ROUTER_DIRECTIVES],
     styles: [require('./list.scss')]
 })
@@ -18,7 +17,7 @@ import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
 export class ListUsers implements OnInit, OnDestroy {
     Users: User[];
     private GetUsers: Subscription;
-    constructor(private userService: UserService, private router: Router) {
+    constructor(@Inject(UserService) private userService: UserService, private router: Router) {
         this.Users = Array<User>();
     }
     ngOnInit() {

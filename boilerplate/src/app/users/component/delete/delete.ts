@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from 'angular2/core';
+import {Component, OnInit, OnDestroy, Inject} from 'angular2/core';
 import {User} from '../../user';
 import {UserService} from '../../services/user.service';
 
@@ -12,7 +12,7 @@ import {UserService} from '../../services/user.service';
 
 export class DeleteUser implements OnInit, OnDestroy {
     public user: User;
-    constructor(private userService: UserService) { }
+    constructor( @Inject(UserService) private userService: UserService) { }
     ngOnInit() { }
     ngOnDestroy() { }
     deleteUser() {

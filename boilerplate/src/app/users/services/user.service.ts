@@ -11,11 +11,15 @@ export class UserService {
         @Inject(API_URL) private apiUrl: string) {
     }
     get(): Observable<User[]> {
-        return this.http.get(this.apiUrl)
+        if (this.users !== undefined) {
+            return this.users;
+        }
+        this.users = this.http.get(this.apiUrl)
             .map((response: Response) => {
                 let data = <User[]>response.json();
                 return data;
             });
+        return this.users;
     }
     add(user: User) {
         this.http.post(this.apiUrl, JSON.stringify(user))
@@ -36,4 +40,6 @@ export class UserService {
             });
     }
 }
-
+export var UserServiceInjectables: Array<any> = [
+    bind(UserService).toClass(UserService)
+];

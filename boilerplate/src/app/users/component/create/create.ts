@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from 'angular2/core';
+import {Component, OnInit, OnDestroy, Inject} from 'angular2/core';
 import {} from 'angular2/forms';
 import {User} from '../../user';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators} from 'angular2/common';
@@ -15,7 +15,8 @@ import {UserService} from '../../services/user.service';
 
 export class CreateUser implements OnInit, OnDestroy {
     createForm: ControlGroup;
-    constructor(fb: FormBuilder, private userService: UserService, private router: Router) {
+    constructor(fb: FormBuilder, @Inject(UserService) private userService: UserService,
+        private router: Router) {
         this.createForm = fb.group({
             'name': ['', Validators.compose([Validators.required,
                 Validators.nullValidator, Validators.minLength(1), Validators.maxLength(30)])],
