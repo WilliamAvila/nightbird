@@ -30,7 +30,8 @@ module.exports = helpers.validate({
     // cache: false,
 
     // our angular app
-    entry: { 'polyfills': './src/polyfills.ts', 'main': './src/main.ts',
+    entry: { 'polyfills': './src/polyfills.ts',
+    'main': './src/main.ts',
      "externalLibraries": [
         "./node_modules/foundation-sites/dist/foundation.min.js"
     ],

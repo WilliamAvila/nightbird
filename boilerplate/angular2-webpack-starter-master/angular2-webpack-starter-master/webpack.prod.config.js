@@ -3,6 +3,7 @@
 /*
  * Helper: root(), and rootDir() are defined at the bottom
  */
+var path = require('path');
 var helpers = require('./helpers');
 // Webpack Plugins
 var webpack = require('webpack');
@@ -18,6 +19,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackMd5Hash    = require('webpack-md5-hash');
 var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 var ENV = process.env.NODE_ENV = process.env.ENV = 'production';
+var CleanPlugin = require('clean-webpack-plugin');
 var HOST = process.env.HOST || 'localhost';
 var PORT = process.env.PORT || 8080;
 
@@ -63,7 +65,9 @@ module.exports = {
         test: /\.ts$/,
         loader: 'tslint-loader',
         exclude: [
-          helpers.root('node_modules')
+          helpers.root('node_modules'),
+          root('for_foundation'),
+          root('for_bootstrap')
         ]
       },
       {
@@ -88,6 +92,8 @@ module.exports = {
         },
         exclude: [
           /\.(spec|e2e)\.ts$/,
+          root('for_foundation'),
+          root('for_bootstrap')
         ]
       },
 
@@ -110,7 +116,12 @@ module.exports = {
         exclude: [
           helpers.root('src/index.html')
         ]
-      }
+      },
+      { test: /\.scss$/, exclude: /node_modules/, loader: 'raw-loader!sass-loader!postcss-loader' },
+    { test: /\.less$/, loader: 'raw-loader!less' },
+    { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
+    { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
+
 
     ],
     noParse: [
@@ -121,6 +132,7 @@ module.exports = {
   },
 
   plugins: [
+      new CleanPlugin('dist'),
     new ForkCheckerPlugin(),
     new WebpackMd5Hash(),
     new DedupePlugin(),
@@ -247,3 +259,7 @@ module.exports = {
     setImmediate: false
   }
 };
+function root(args) {
+    args = Array.prototype.slice.call(arguments, 0);
+    return path.join.apply(path, [__dirname].concat(args));
+}
