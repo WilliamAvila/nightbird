@@ -10,7 +10,7 @@ var CleanPlugin = require('clean-webpack-plugin');
  * Config
  */
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   resolve: {
     extensions: ['', '.ts', '.js']
   },
@@ -44,8 +44,8 @@ module.exports = {
       },
       { test: /\.json$/, loader: 'json-loader', exclude: [ helpers.root('src/index.html') ] },
       { test: /\.html$/, loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] },
-      { test: /\.css$/,  loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] }
-      {test: /\.scss$/, exclude: /node_modules/, loader: 'raw-loader!sass-loader!postcss-loader'},
+      { test: /\.css$/,  loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] },
+    {test: /\.scss$/, exclude: /node_modules/, loader: 'raw-loader!sass-loader!postcss-loader'},
       {test: /\.less$/, loader: 'raw-loader!less'},
       {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff"},
       {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"}
@@ -64,8 +64,8 @@ module.exports = {
     ]
   },
   plugins: [
-    // Environment helpers
     new CleanPlugin('dist'),
+    // Environment helpers
     new DefinePlugin({
       'ENV': JSON.stringify(ENV),
       'HMR': false
@@ -80,8 +80,8 @@ module.exports = {
     setImmediate: false
   },
   tslint: {
-    emitErrors: false,
-    failOnHint: false,
+    emitErrors: true,
+    failOnHint: true,
     resourcePath: 'src',
   }
 };
@@ -89,4 +89,3 @@ function root(args) {
     args = Array.prototype.slice.call(arguments, 0);
     return path.join.apply(path, [__dirname].concat(args));
 }
-
