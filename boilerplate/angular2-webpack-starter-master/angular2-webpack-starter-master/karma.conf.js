@@ -32,7 +32,27 @@ module.exports = function(config) {
         { type: 'text-summary' },
         { type: 'json' },
         { type: 'html' }
-      ]
+      ],
+            check: {
+                global: {
+                    statements: 0,
+                    branches: 0,
+                    functions: 0,
+                    lines: 0,
+                    excludes: [
+                        'src/app/directives/router-active.js'
+                    ]
+                },
+                each: {
+                    statements: 0,
+                    branches: 0,
+                    functions: 0,
+                    lines: 0,
+                    excludes: [
+                        'src/app/directives/router-active.ts'
+                    ]
+                }
+            }
     },
 
     // Webpack please don't spam the console when running in karma!
@@ -41,7 +61,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: [ 'mocha', 'coverage' ],
+    reporters: [ 'html', 'coverage' ],
 
     // web server port
     port: 9876,
@@ -59,7 +79,7 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: [
-      // 'Chrome',
+      'Chrome',
       'PhantomJS'
     ],
 
