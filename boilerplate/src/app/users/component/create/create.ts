@@ -1,5 +1,4 @@
 import {Component, OnInit, OnDestroy, Inject} from 'angular2/core';
-import {} from 'angular2/forms';
 import {User} from '../../user';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators} from 'angular2/common';
 import {Router} from 'angular2/router';

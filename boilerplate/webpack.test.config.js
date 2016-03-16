@@ -9,11 +9,11 @@ var CleanPlugin = require('clean-webpack-plugin');
 /*
  * Config
  */
-module.exports = helpers.validate({
+module.exports = {
+  devtool: 'source-map',
   resolve: {
-    extensions: ['', '.ts','.js']
+    extensions: ['', '.ts', '.js']
   },
-  devtool: 'inline-source-map',
   module: {
     preLoaders: [
       {
@@ -34,19 +34,18 @@ module.exports = helpers.validate({
     loaders: [
       {
         test: /\.ts$/,
-        loader: 'ts-loader',
+        loader: 'awesome-typescript-loader',
         query: {
           "compilerOptions": {
-            "noEmitHelpers": true,
             "removeComments": true,
           }
         },
         exclude: [ /\.e2e\.ts$/ ]
       },
-      { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.html$/, loader: 'raw-loader' },
-      { test: /\.css$/,  loader: 'raw-loader' },
-        {test: /\.scss$/, exclude: /node_modules/, loader: 'raw-loader!sass-loader!postcss-loader'},
+      { test: /\.json$/, loader: 'json-loader', exclude: [ helpers.root('src/index.html') ] },
+      { test: /\.html$/, loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] },
+      { test: /\.css$/,  loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] },
+    {test: /\.scss$/, exclude: /node_modules/, loader: 'raw-loader!sass-loader!postcss-loader'},
       {test: /\.less$/, loader: 'raw-loader!less'},
       {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff"},
       {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"}
@@ -62,43 +61,30 @@ module.exports = helpers.validate({
           /node_modules/
         ]
       }
-    ],
-    noParse: [
-      helpers.root('zone.js/dist'),
-      helpers.root('angular2/bundles')
     ]
   },
-  stats: { colors: true, reasons: true },
-  debug: false,
   plugins: [
-       new CleanPlugin('dist'),
+    new CleanPlugin('dist'),
+    // Environment helpers
     new DefinePlugin({
-      // Environment helpers
-      'process.env': {
-        'ENV': JSON.stringify(ENV),
-        'NODE_ENV': JSON.stringify(ENV)
-      }
-    }),
-    new ProvidePlugin({
-      // TypeScript helpers
-      '__metadata': 'ts-helper/metadata',
-      '__decorate': 'ts-helper/decorate',
-      '__awaiter': 'ts-helper/awaiter',
-      '__extends': 'ts-helper/extends',
-      '__param': 'ts-helper/param',
+      'ENV': JSON.stringify(ENV),
+      'HMR': false
     })
   ],
-    // we need this due to problems with es6-shim
   node: {
     global: 'window',
-    progress: false,
+    process: false,
     crypto: 'empty',
     module: false,
     clearImmediate: false,
     setImmediate: false
+  },
+  tslint: {
+    emitErrors: true,
+    failOnHint: true,
+    resourcePath: 'src',
   }
-});
-
+};
 function root(args) {
     args = Array.prototype.slice.call(arguments, 0);
     return path.join.apply(path, [__dirname].concat(args));

@@ -7,7 +7,6 @@ import {FORM_DIRECTIVES, FormBuilder,
 
 @Component({
     selector: 'edit-user',
-    inputs: ['user'],
     template: require('./edit.html'),
     styles: [require('../../../app.scss')],
     providers: [UserService, FORM_DIRECTIVES, CORE_DIRECTIVES]
