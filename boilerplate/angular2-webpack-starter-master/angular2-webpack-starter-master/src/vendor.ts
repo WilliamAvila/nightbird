@@ -12,7 +12,7 @@ import 'angular2/router';
 // RxJS
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
-
+require('font-awesome-webpack');
 if ('production' === ENV) {
   // Production
 

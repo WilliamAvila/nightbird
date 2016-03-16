@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="medium-3 medium-centered">
+        <h1>Users</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="row">
+        <button type="button" class="button" (click)="goToCreateUser()">Add User</button>
+        <table class="hover stack">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>UserName</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Website</th>
+                </tr>
+            </thead>
+            <tr *ngFor="#user of Users">
+                <td><p *ngIf="!isEditable">{{ user.name }}</p></td>
+                <td><p>{{ user.username }}</p></td>
+                <td><p>{{ user.email }}</p></td>
+                <td><p>{{ user.phone }}</p></td>
+                <td><p>{{ user.website }}</p></td>
+                <td class="button-group">
+                    <button (click)="goToEditUser(user)" type="button" class="secondary button">Edit</button>
+                    <delete-user [user]="user"> </delete-user>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -9,8 +9,15 @@ import {
   LocationStrategy,
   HashLocationStrategy
 } from 'angular2/router';
+import {AuthHttp, AuthConfig} from 'angular2-jwt';
+import {appInjector} from './app/common/app_injector';
+import 'script!jquery';
+import 'script!what-input';
+import 'script!foundation-sites';
 import {FORM_PROVIDERS} from 'angular2/common';
-import {HTTP_PROVIDERS} from 'angular2/http';
+import {HTTP_PROVIDERS, Http} from 'angular2/http';
+import {CommonInjectables} from './app/common/common.injectables';
+import {UserServiceInjectables} from './app/users/services/user.service';
 
 /*
  * App Component
@@ -62,8 +69,19 @@ export function main() {
     ...APPLICATION_PROVIDERS,
     ngCore.provide(ngCore.PLATFORM_DIRECTIVES, {useValue: APPLICATION_DIRECTIVES, multi: true}),
     ngCore.provide(ngCore.PLATFORM_PIPES, {useValue: APPLICATION_PIPES, multi: true})
-  ])
-  .catch(err => console.error(err));
+    ngCore.provide(AuthHttp, {
+        useFactory: (http) => {
+            return new AuthHttp(new AuthConfig(), http);
+        },
+        deps: [Http]
+    }),
+    CommonInjectables,
+    UserServiceInjectables
+  ]).then((appRef: ngCore.ComponentRef) => {
+        // store a reference to the application injector
+        appInjector(appRef.injector);
+    })
+    .catch(err => console.error(err));
 }
 
 
