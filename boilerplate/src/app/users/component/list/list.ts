@@ -12,12 +12,11 @@ import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
     template: require('./list.html'),
     directives: [FORM_DIRECTIVES, EditUser, DeleteUser, ROUTER_DIRECTIVES, CORE_DIRECTIVES],
     styles: [require('./list.scss')],
-    providers: [UserService]
 })
 
 export class ListUsers implements OnInit, OnDestroy {
     users: Observable<User[]>;
-    constructor(private userService: UserService, private router: Router) {
+    constructor(@Inject(UserService) private userService: UserService, private router: Router) {
     }
     ngOnInit() {
         this.users = this.userService.users;

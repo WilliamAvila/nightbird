@@ -1,4 +1,4 @@
-import {HTTP_PROVIDERS, Http, Response } from 'angular2/http';
+import {HTTP_PROVIDERS, Http, Response, RequestOptions, Headers} from 'angular2/http';
 import {Injectable, Inject, bind } from 'angular2/core';
 import {Observable, BehaviorSubject, Observer} from 'rxjs';
 import {User} from '../user';
@@ -26,10 +26,11 @@ export class UserService {
             }, error => console.log('Could not load users.'));
     }
     add(user: User) {
-        this.http.post(this.apiUrl, JSON.stringify(user))
-            .subscribe((response: Response) => {
-                console.log(<User[]>response.json());
-            });
+        this.http.post(this.apiUrl, JSON.stringify(user), this.getHeaders())
+            .map(response => response.json()).subscribe(data => {
+                this._dataStore.users.push(data);
+                this._usersObserver.next(this._dataStore.users);
+            }, error => console.log('Could not create todo.'));
     }
     update(user: User) {
         this.http.put(this.apiUrl + '/' + user.id, JSON.stringify(user))
@@ -42,6 +43,13 @@ export class UserService {
             .subscribe((response: Response) => {
                 console.log(<User[]>response.json());
             });
+    }
+    private getHeaders() {
+        let headers: Headers = new Headers();
+        let opts: RequestOptions = new RequestOptions();
+        headers.append('Content-Type', 'application/json');
+        opts.headers = headers;
+        return opts;
     }
 }
 export var UserServiceInjectables: Array<any> = [
