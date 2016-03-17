@@ -68,7 +68,7 @@ export function main() {
   return browser.bootstrap(App, [
     ...APPLICATION_PROVIDERS,
     ngCore.provide(ngCore.PLATFORM_DIRECTIVES, {useValue: APPLICATION_DIRECTIVES, multi: true}),
-    ngCore.provide(ngCore.PLATFORM_PIPES, {useValue: APPLICATION_PIPES, multi: true})
+    ngCore.provide(ngCore.PLATFORM_PIPES, {useValue: APPLICATION_PIPES, multi: true}),
     ngCore.provide(AuthHttp, {
         useFactory: (http) => {
             return new AuthHttp(new AuthConfig(), http);

@@ -16,7 +16,7 @@
                     <th>Website</th>
                 </tr>
             </thead>
-            <tr *ngFor="#user of Users">
+            <tr *ngFor="#user of users | async">
                 <td><p *ngIf="!isEditable">{{ user.name }}</p></td>
                 <td><p>{{ user.username }}</p></td>
                 <td><p>{{ user.email }}</p></td>
