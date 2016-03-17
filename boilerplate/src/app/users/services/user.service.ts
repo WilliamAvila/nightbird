@@ -43,10 +43,14 @@ export class UserService {
             }, error => console.log('Could not update todo.'));
     }
     delete(user: User) {
-        this.http.delete(this.apiUrl + '/' + user.id)
-            .subscribe((response: Response) => {
-                console.log(<User[]>response.json());
-            });
+        this.http.delete(this.apiUrl + '/' + user.id, this.getHeaders())
+            .subscribe(response => {
+                this._dataStore.users.forEach((t, i) => {
+                    if (t.id === user.id) { this._dataStore.users.splice(i, 1); }
+                });
+
+                this._usersObserver.next(this._dataStore.users);
+            }, error => console.log('Could not delete todo.'));
     }
     private getHeaders() {
         let headers: Headers = new Headers();
