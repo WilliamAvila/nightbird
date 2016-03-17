@@ -8,6 +8,7 @@ import {FORM_PROVIDERS} from 'angular2/common';
 import {RouterActive} from './directives/router-active';
 import {Home} from './home/components/home';
 import {Login} from './login/login';
+
 /*
  * App Component
  * Top Level Component
@@ -17,21 +18,7 @@ import {Login} from './login/login';
     providers: [...FORM_PROVIDERS],
     directives: [...ROUTER_DIRECTIVES, RouterActive],
     pipes: [],
-    styles: [`
-    nav ul {
-      display: inline;
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      width: 60px;
-    }
-    nav li {
-      display: inline;
-    }
-    nav li.active {
-      background-color: lightgray;
-    }
-  `],
+    styles: [],
     template: `
     <header>
     </header>
@@ -47,8 +34,8 @@ import {Login} from './login/login';
 })
 @RouteConfig([
     { path: '/', redirectTo: ['Home'] },
-    { path: '/login', component: Login, name: 'Login' },
-    { path: '/home', component: Home, name: 'Home', },
+    { path: '/login', component: Login, name: 'Login', useAsDefault: true },
+    {path: '/home/...', component: Home, name: 'Home', },
     // Async load a component using Webpack's require with es6-promise-loader
     { path: '/**', redirectTo: ['Home'] },
 ])

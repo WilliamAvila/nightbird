@@ -59,9 +59,3 @@ npm-debug.log
 # IDE #
 .idea/
 *.swp
-
-# generator #
-generator-nightbird/generators/app/templates/
-
-# visual studio code #
-.vscode
