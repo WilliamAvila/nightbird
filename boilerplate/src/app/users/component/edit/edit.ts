@@ -9,7 +9,7 @@ import {FORM_DIRECTIVES, FormBuilder,
     selector: 'edit-user',
     template: require('./edit.html'),
     styles: [require('../../../app.scss')],
-    providers: [UserService, FORM_DIRECTIVES, CORE_DIRECTIVES]
+    providers: [FORM_DIRECTIVES, CORE_DIRECTIVES]
 })
 
 export class EditUser implements OnInit, OnDestroy {

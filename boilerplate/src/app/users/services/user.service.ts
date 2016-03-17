@@ -33,10 +33,14 @@ export class UserService {
             }, error => console.log('Could not create todo.'));
     }
     update(user: User) {
-        this.http.put(this.apiUrl + '/' + user.id, JSON.stringify(user))
-            .subscribe((response: Response) => {
-                console.log(<User[]>response.json());
-            });
+        this.http.put(this.apiUrl + '/' + user.id, JSON.stringify(user), this.getHeaders())
+            .map(response => response.json()).subscribe(data => {
+                this._dataStore.users.forEach((todo, i) => {
+                    if (todo.id === data.id) { this._dataStore.users[i] = data; }
+                });
+
+                this._usersObserver.next(this._dataStore.users);
+            }, error => console.log('Could not update todo.'));
     }
     delete(user: User) {
         this.http.delete(this.apiUrl + '/' + user.id)
