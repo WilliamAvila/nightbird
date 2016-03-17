@@ -9,7 +9,6 @@ import {UserService} from '../../services/user.service';
     template: require('./create.html'),
     styles: [require('./create.scss')],
     directives: [FORM_DIRECTIVES],
-    providers: [UserService]
 })
 
 export class CreateUser implements OnInit, OnDestroy {
