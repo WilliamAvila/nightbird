@@ -3,6 +3,7 @@ import {Injectable, Inject, bind } from 'angular2/core';
 import {Observable, BehaviorSubject, Observer} from 'rxjs';
 import {User} from '../user';
 import {API_URL} from '../../common/common.injectables';
+import {AAHttpService} from '../../service/http.service';
 
 @Injectable()
 export class UserService {
@@ -11,29 +12,28 @@ export class UserService {
     private _dataStore: {
         users: User[]
     };
-    constructor(public http: Http,
-        @Inject(API_URL) private apiUrl: string) {
+    constructor(private httpService: AAHttpService) {
         this.users = new Observable(observer => {
             this._usersObserver = observer;
         }).share();
         this._dataStore = { users: [] };
     }
     load() {
-        this.http.get(this.apiUrl)
+        this.httpService.get('/users')
             .map(response => response.json()).subscribe(data => {
                 this._dataStore.users = data;
                 this._usersObserver.next(this._dataStore.users);
             }, error => console.log('Could not load users.'));
     }
     add(user: User) {
-        this.http.post(this.apiUrl, JSON.stringify(user), this.getHeaders())
+        this.httpService.post(JSON.stringify(user), '/users')
             .map(response => response.json()).subscribe(data => {
                 this._dataStore.users.push(data);
                 this._usersObserver.next(this._dataStore.users);
             }, error => console.log('Could not create user.'));
     }
     update(user: User) {
-        this.http.put(this.apiUrl + '/' + user.id, JSON.stringify(user), this.getHeaders())
+        this.httpService.put(JSON.stringify(user), '/users/' + user.id)
             .map(response => response.json()).subscribe(data => {
                 this._dataStore.users.forEach((todo, i) => {
                     if (todo.id === data.id) { this._dataStore.users[i] = data; }
@@ -44,11 +44,11 @@ export class UserService {
     }
     getUser(id: number): User {
         return this._dataStore.users[this._dataStore.users.findIndex(user =>
-         user.id === id
-         )];
+            user.id === id
+        )];
     }
     delete(user: User) {
-        this.http.delete(this.apiUrl + '/' + user.id, this.getHeaders())
+        this.httpService.delete('/users/' + user.id)
             .subscribe(response => {
                 this._dataStore.users.forEach((t, i) => {
                     if (t.id === user.id) { this._dataStore.users.splice(i, 1); }
@@ -56,13 +56,6 @@ export class UserService {
 
                 this._usersObserver.next(this._dataStore.users);
             }, error => console.log('Could not delete user.'));
-    }
-    private getHeaders() {
-        let headers: Headers = new Headers();
-        let opts: RequestOptions = new RequestOptions();
-        headers.append('Content-Type', 'application/json');
-        opts.headers = headers;
-        return opts;
     }
 }
 export var UserServiceInjectables: Array<any> = [
