@@ -1,4 +1,4 @@
-import {Component, View, OnInit} from 'angular2/core';
+import {Component, View, OnInit, NgZone} from 'angular2/core';
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Http} from 'angular2/http';
 import {FORM_PROVIDERS} from 'angular2/common';
@@ -14,7 +14,7 @@ export class Login implements OnInit {
 
     lock = new Auth0Lock('m3xNJ6C4oXkezrkuh3uYKxkDADrxkmEy', 'acklenavenue.auth0.com');
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private zone: NgZone) { }
 
     ngOnInit() {
         this.lock.show((err: string, profile: string, id_token: string) => {
@@ -23,7 +23,7 @@ export class Login implements OnInit {
             }
             localStorage.setItem('profile', JSON.stringify(profile));
             localStorage.setItem('id_token', id_token);
-            this.router.parent.navigate(['/Home']);
+            this.zone.run(() => this.router.navigate(['/Home/User/ListUsers']));
         });
     }
 
