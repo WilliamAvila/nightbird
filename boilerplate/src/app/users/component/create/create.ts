@@ -30,7 +30,6 @@ export class CreateUser implements OnInit, OnDestroy {
     ngOnDestroy() {
     }
     createUser(user: User) {
-        console.log(user);
         this.userService.add(user);
         this.router.navigate(['/Home/User/']);
     }

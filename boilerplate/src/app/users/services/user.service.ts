@@ -30,7 +30,7 @@ export class UserService {
             .map(response => response.json()).subscribe(data => {
                 this._dataStore.users.push(data);
                 this._usersObserver.next(this._dataStore.users);
-            }, error => console.log('Could not create todo.'));
+            }, error => console.log('Could not create user.'));
     }
     update(user: User) {
         this.http.put(this.apiUrl + '/' + user.id, JSON.stringify(user), this.getHeaders())
@@ -40,7 +40,12 @@ export class UserService {
                 });
 
                 this._usersObserver.next(this._dataStore.users);
-            }, error => console.log('Could not update todo.'));
+            }, error => console.log('Could not update user.'));
+    }
+    getUser(id: number): User {
+        return this._dataStore.users[this._dataStore.users.findIndex(user =>
+         user.id === id
+         )];
     }
     delete(user: User) {
         this.http.delete(this.apiUrl + '/' + user.id, this.getHeaders())
@@ -50,7 +55,7 @@ export class UserService {
                 });
 
                 this._usersObserver.next(this._dataStore.users);
-            }, error => console.log('Could not delete todo.'));
+            }, error => console.log('Could not delete user.'));
     }
     private getHeaders() {
         let headers: Headers = new Headers();

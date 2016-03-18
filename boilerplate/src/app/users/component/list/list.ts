@@ -26,7 +26,7 @@ export class ListUsers implements OnInit, OnDestroy {
     goToCreateUser(event: any) {
         this.router.navigateByUrl('home/users/create');
     }
-    goToEditUser(user: User) {
-        this.router.navigate(['/Home/User/EditUser', { user: user }]);
+    goToEditUser(id: number) {
+        this.router.navigate(['/Home/User/EditUser', { id: id }]);
     }
 }
