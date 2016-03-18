@@ -21,7 +21,7 @@ import {User} from './user';
 @RouteConfig([
     { path: '/list', component: ListUsers, name: 'ListUsers', useAsDefault: true },
     { path: '/create', component: CreateUser, name: 'CreateUser' },
-    { path: '/edit', component: EditUser, name: 'EditUser', data: { user: User } }
+    { path: '/edit/:id', component: EditUser, name: 'EditUser' }
 ])
 export class UserComponent {
     constructor() {

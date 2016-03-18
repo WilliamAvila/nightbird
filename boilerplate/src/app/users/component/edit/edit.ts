@@ -14,7 +14,6 @@ import {FORM_DIRECTIVES, FormBuilder,
 
 export class EditUser implements OnInit, OnDestroy {
     public user: User;
-    hola: string;
     editForm: ControlGroup;
     constructor(fb: FormBuilder, @Inject(UserService) private userService: UserService,
         private routeParams: RouteParams, private router: Router) {
@@ -29,11 +28,10 @@ export class EditUser implements OnInit, OnDestroy {
         });
     }
     ngOnInit() {
-        this.user = JSON.parse(JSON.stringify(this.routeParams.get('user')));
+        this.user = this.userService.getUser(parseInt(this.routeParams.get('id')));
     }
     ngOnDestroy() { }
     updateUser(user: User) {
-        console.log(this.user);
         this.userService.update(this.user);
         this.router.navigate(['/Home/User/']);
     }

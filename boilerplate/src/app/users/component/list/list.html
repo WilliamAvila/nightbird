@@ -23,7 +23,7 @@
                 <td><p>{{ user.phone }}</p></td>
                 <td><p>{{ user.website }}</p></td>
                 <td class="button-group">
-                    <button (click)="goToEditUser(user)" type="button" class="secondary button">Edit</button>
+                    <button (click)="goToEditUser(user.id)" type="button" class="secondary button">Edit</button>
                     <delete-user [user]="user"> </delete-user>
                 </td>
             </tr>
