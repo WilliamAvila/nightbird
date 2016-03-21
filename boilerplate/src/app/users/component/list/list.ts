@@ -20,7 +20,7 @@ export class ListUsers implements OnInit, OnDestroy {
     }
     ngOnInit() {
         this.users = this.userService.users;
-        this.userService.load();
+        this.userService.getAllUsers();
     }
     ngOnDestroy() { }
     goToCreateUser(event: any) {

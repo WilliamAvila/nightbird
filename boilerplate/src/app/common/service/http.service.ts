@@ -2,7 +2,7 @@ import {Injectable, Inject, bind} from 'angular2/core';
 import {AuthHttp} from 'angular2-jwt';
 import {Headers, RequestOptions, RequestOptionsArgs, RequestMethod, Response} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
-import {API_URL} from '../common/common.injectables';
+import {API_URL} from '../common.injectables';
 
 @Injectable()
 export class AAHttpService {

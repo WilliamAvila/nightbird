@@ -3,7 +3,7 @@ import {Injectable, Inject, bind } from 'angular2/core';
 import {Observable, BehaviorSubject, Observer} from 'rxjs';
 import {User} from '../user';
 import {API_URL} from '../../common/common.injectables';
-import {AAHttpService} from '../../service/http.service';
+import {AAHttpService} from '../../common/service/http.service';
 
 @Injectable()
 export class UserService {
@@ -18,12 +18,14 @@ export class UserService {
         }).share();
         this._dataStore = { users: [] };
     }
-    load() {
-        this.httpService.get('/users')
-            .map(response => response.json()).subscribe(data => {
-                this._dataStore.users = data;
-                this._usersObserver.next(this._dataStore.users);
-            }, error => console.log('Could not load users.'));
+    getAllUsers() {
+        if (this._dataStore.users.length === 0) {
+            this.httpService.get('/users')
+                .map(response => response.json()).subscribe(data => {
+                    this._dataStore.users = data;
+                    this._usersObserver.next(this._dataStore.users);
+                }, error => console.log('Could not load users.'));
+        }
     }
     add(user: User) {
         this.httpService.post(JSON.stringify(user), '/users')

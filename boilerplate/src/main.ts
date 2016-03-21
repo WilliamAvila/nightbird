@@ -18,7 +18,7 @@ import {FORM_PROVIDERS} from 'angular2/common';
 import {HTTP_PROVIDERS, Http} from 'angular2/http';
 import {CommonInjectables} from './app/common/common.injectables';
 import {UserServiceInjectables} from './app/users/services/user.service';
-import {AAHttpServiceInjectables} from './app/service/http.service';
+import {AAHttpServiceInjectables} from './app/common/service/http.service';
 
 /*
  * App Component
