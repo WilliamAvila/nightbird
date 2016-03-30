@@ -13,7 +13,7 @@ import {RouterActive} from './router-active';
  * Top Level Component
  */
 @Component({
-  selector: 'app',
+  selector: 'aa-app',
   pipes: [ ],
   providers: [ ],
   directives: [ RouterActive ],
