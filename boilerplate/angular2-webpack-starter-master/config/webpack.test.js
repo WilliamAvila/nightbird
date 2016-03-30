@@ -9,7 +9,7 @@ var helpers = require('./helpers');
  */
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');
 var DefinePlugin = require('webpack/lib/DefinePlugin');
-
+var CleanPlugin = require('clean-webpack-plugin');
 /**
  * Webpack Constants
  */
@@ -111,8 +111,10 @@ module.exports = {
       // Returns file content as string
       //
       // See: https://github.com/webpack/raw-loader
-      {test: /\.css$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]}
-
+      {test: /\.css$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]},
+      {test: /\.less$/, loader: 'raw-loader!less'},
+      {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff"},
+      {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"}
     ],
 
     // An array of applied pre and post loaders.
@@ -140,7 +142,7 @@ module.exports = {
   //
   // See: http://webpack.github.io/docs/configuration.html#plugins
   plugins: [
-
+      new CleanPlugin('dist'),
     // Plugin: DefinePlugin
     // Description: Define free variables.
     // Useful for having development builds with debug logging or adding global constants.
