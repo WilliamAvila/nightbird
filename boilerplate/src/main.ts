@@ -12,7 +12,6 @@ import {
 import {AuthHttp, AuthConfig} from 'angular2-jwt';
 import {appInjector} from './app/common/app_injector';
 import 'script!jquery';
-import 'script!what-input';
 import 'script!foundation-sites';
 import {FORM_PROVIDERS} from 'angular2/common';
 import {HTTP_PROVIDERS, Http} from 'angular2/http';
