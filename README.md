@@ -16,3 +16,6 @@ Then, run the following command:
 |     Subgenerators     |               Description               | Command         |
 | --------------------- |:---------------------------------------:| :-----------------------:|
 |       Bootstrap       |   Add bootstrap styles in your project  | `$ yo nightbird:bootstrap`|
+
+# Video Tutorials 
+For more information about how to install and use Nightbird you can see [Nightbird Video tutorials](https://youtu.be/MMkVZwVZkm0?list=PLdHGHHzhNZuCSits8Nx8zDR6U5reWtlMc)
