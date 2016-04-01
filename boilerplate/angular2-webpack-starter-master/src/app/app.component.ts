@@ -5,9 +5,8 @@ import {Component} from 'angular2/core';
 import {RouteConfig, Router} from 'angular2/router';
 
 import {Home} from './home/components/home';
-import {AppState} from './app.service';
 import {RouterActive} from './router-active';
-
+import {Login} from './login/login';
 /*
  * App Component
  * Top Level Component
@@ -28,26 +27,21 @@ import {RouterActive} from './router-active';
 
     <footer>
     </footer>
-
-    <pre>this.appState.state = {{ appState.state | json }}</pre>
   `
 })
 @RouteConfig([
-  { path: '/',      name: 'Index', component: Home, useAsDefault: true },
-  { path: '/home',  name: 'Home',  component: Home },
-  // Async load a component using Webpack's require with es6-promise-loader and webpack `require`
-  { path: '/about', name: 'About', loader: () => require('es6-promise!./about')('About') },
+  { path: '/', redirectTo: ['Home'] },
+    { path: '/login', component: Login, name: 'Login', useAsDefault: true },
+    {path: '/home/...', component: Home, name: 'Home', },
+    // Async load a component using Webpack's require with es6-promise-loader
+    { path: '/**', redirectTo: ['Home'] },
 ])
 export class App {
   angularclassLogo = 'assets/img/angularclass-avatar.png';
   name = 'Angular 2 Webpack Starter';
   url = 'https://twitter.com/AngularClass';
 
-  constructor(public appState: AppState) {}
-
-  ngOnInit() {
-    console.log('Initial App State', this.appState.state);
-  }
+  constructor() {}
 
 }
 

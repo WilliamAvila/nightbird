@@ -16,9 +16,9 @@ import {ENV_PROVIDERS} from './platform/environment';
 import {App, APP_PROVIDERS} from './app';
 import 'script!jquery';
 import 'script!foundation-sites';
-//import {CommonInjectables} from './app/common/common.injectables';
-//import {UserServiceInjectables} from './app/users/services/user.service';
-//import {AAHttpServiceInjectables} from './app/common/service/http.service';
+import {CommonInjectables} from './app/common/common.injectables';
+import {UserServiceInjectables} from './app/users/services/user.service';
+import {AAHttpServiceInjectables} from './app/common/service/http.service';
 
 /*
  * Bootstrap our Angular app with a top level component `App` and inject
@@ -32,6 +32,9 @@ export function main(initialHmrState?: any): Promise<any> {
     ...DIRECTIVES,
     ...PIPES,
     ...APP_PROVIDERS,
+    CommonInjectables,
+    UserServiceInjectables,
+    AAHttpServiceInjectables,
   ])
   .catch(err => console.error(err));
 

@@ -41,6 +41,9 @@ import {UserComponent} from '../../users/user.component';
 /*@CanActivate((next: ComponentInstruction, previous: ComponentInstruction) => {
     return isLoggedIn(next, previous);
 })*/
+@RouteConfig([
+    { path: '/users/...', component: UserComponent, name: 'User', useAsDefault: true },
+])
 export class Home {
     // Set our default values
     data = { value: '' };
