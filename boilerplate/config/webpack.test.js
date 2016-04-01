@@ -173,7 +173,7 @@ module.exports = {
   // See: https://webpack.github.io/docs/configuration.html#node
   node: {
     global: 'window',
-    process: false,
+    process: true,
     crypto: 'empty',
     module: false,
     clearImmediate: false,
