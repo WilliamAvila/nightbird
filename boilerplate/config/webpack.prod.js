@@ -15,7 +15,6 @@ var DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 var UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 var CompressionPlugin = require('compression-webpack-plugin');
 var WebpackMd5Hash = require('webpack-md5-hash');
-var CleanPlugin = require('clean-webpack-plugin');
 /**
  * Webpack Constants
  */
@@ -75,7 +74,6 @@ module.exports = webpackMerge(commonConfig, {
   //
   // See: http://webpack.github.io/docs/configuration.html#plugins
   plugins: [
-   new CleanPlugin('dist'),
     // Plugin: WebpackMd5Hash
     // Description: Plugin to replace a standard webpack chunkhash with md5.
     //

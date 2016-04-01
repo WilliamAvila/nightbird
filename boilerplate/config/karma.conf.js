@@ -40,7 +40,7 @@ module.exports = function(config) {
                     functions: 0,
                     lines: 0,
                     excludes: [
-                        'src/app/directives/router-active.js'
+                        'src/app/router-active/router-active.js'
                     ]
                 },
                 each: {
@@ -49,7 +49,7 @@ module.exports = function(config) {
                     functions: 0,
                     lines: 0,
                     excludes: [
-                        'src/app/directives/router-active.ts'
+                        'src/app/router-active/router-active.js'
                     ]
                 }
             }

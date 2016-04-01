@@ -5,7 +5,6 @@
 var helpers = require('./helpers');
 var webpackMerge = require('webpack-merge'); //Used to merge webpack configs
 var commonConfig = require('./webpack.common.js'); //The settings that are common to prod and dev
-var CleanPlugin = require('clean-webpack-plugin');
 /**
  * Webpack Plugins
  */
@@ -71,7 +70,6 @@ module.exports = webpackMerge(commonConfig, {
   },
 
   plugins: [
-    new CleanPlugin('dist'),
     // Plugin: DefinePlugin
     // Description: Define free variables.
     // Useful for having development builds with debug logging or adding global constants.
