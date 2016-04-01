@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
-//import {isLoggedIn} from '../../common/is_logged_in';
+import {isLoggedIn} from '../../common/is_logged_in';
 import {Title} from '../services/title';
 import {XLarge} from '../directives/x-large';
 import {ROUTER_DIRECTIVES,
@@ -38,9 +38,9 @@ import {UserComponent} from '../../users/user.component';
     // Every Angular template is first compiled by the browser before Angular runs it's compiler
     template: require('./home.html')
 })
-/*@CanActivate((next: ComponentInstruction, previous: ComponentInstruction) => {
+@CanActivate((next: ComponentInstruction, previous: ComponentInstruction) => {
     return isLoggedIn(next, previous);
-})*/
+})
 @RouteConfig([
     { path: '/users/...', component: UserComponent, name: 'User', useAsDefault: true },
 ])
