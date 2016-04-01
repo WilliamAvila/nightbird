@@ -4,7 +4,7 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, Router} from 'angular2/router';
 
-import {Home} from './home';
+import {Home} from './home/components/home';
 import {AppState} from './app.service';
 import {RouterActive} from './router-active';
 
