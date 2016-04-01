@@ -9,10 +9,11 @@ import {provide} from 'angular2/core';
 import {FORM_PROVIDERS} from 'angular2/common';
 
 // Angular 2 Http
-import {HTTP_PROVIDERS} from 'angular2/http';
+import {HTTP_PROVIDERS, Http} from 'angular2/http';
 // Angular 2 Router
-import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 
+import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
+import {AuthHttp, AuthConfig} from 'angular2-jwt';
 // Angular 2 Material
 // import {MdRadioDispatcher} from '@angular2-material/radio/radio_dispatcher';
 // const MATERIAL_PROVIDERS = [
@@ -29,6 +30,12 @@ export const APPLICATION_PROVIDERS = [
   // ...MATERIAL_PROVIDERS,
   ...ROUTER_PROVIDERS,
   provide(LocationStrategy, { useClass: HashLocationStrategy }),
+  provide(AuthHttp, {
+        useFactory: (http) => {
+            return new AuthHttp(new AuthConfig(), http);
+        },
+        deps: [Http]
+    }),
 ];
 
 export const PROVIDERS = [

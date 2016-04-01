@@ -4,10 +4,10 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, Router} from 'angular2/router';
 
+import {Home} from './home';
 import {AppState} from './app.service';
 import {RouterActive} from './router-active';
-import {Home} from './home/components/home';
-import {Login} from './login/login';
+
 /*
  * App Component
  * Top Level Component
@@ -33,11 +33,10 @@ import {Login} from './login/login';
   `
 })
 @RouteConfig([
-  { path: '/', redirectTo: ['Home'] },
-    { path: '/login', component: Login, name: 'Login', useAsDefault: true },
-    {path: '/home/...', component: Home, name: 'Home', },
-    // Async load a component using Webpack's require with es6-promise-loader
-    { path: '/**', redirectTo: ['Home'] },
+  { path: '/',      name: 'Index', component: Home, useAsDefault: true },
+  { path: '/home',  name: 'Home',  component: Home },
+  // Async load a component using Webpack's require with es6-promise-loader and webpack `require`
+  { path: '/about', name: 'About', loader: () => require('es6-promise!./about')('About') },
 ])
 export class App {
   angularclassLogo = 'assets/img/angularclass-avatar.png';
