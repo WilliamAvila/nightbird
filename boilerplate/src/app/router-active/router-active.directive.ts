@@ -24,11 +24,11 @@ import {Instruction, RouterLink} from 'angular2/router';
  */
 @Directive({
   selector: '[router-active], [routerActive]'
-
 })
 export class RouterActive {
   @Input() routerActive: string = null;
   routerActiveAttr: string = 'active';
+
   constructor(
     public router: Router,
     public element: ElementRef,

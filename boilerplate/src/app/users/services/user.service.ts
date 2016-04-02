@@ -1,6 +1,6 @@
 import {HTTP_PROVIDERS, Http, Response, RequestOptions, Headers} from 'angular2/http';
 import {Injectable, Inject, bind } from 'angular2/core';
-import {Observable, BehaviorSubject, Observer} from 'rxjs';
+import {Observable, BehaviorSubject, Observer, ConnectableObservable} from 'rxjs';
 import {User} from '../user';
 import {API_URL} from '../../common/common.injectables';
 import {AAHttpService} from '../../common/service/http.service';
@@ -13,10 +13,10 @@ export class UserService {
         users: User[]
     };
     constructor(private httpService: AAHttpService) {
+        this._dataStore = { users: [] };
         this.users = new Observable(observer => {
             this._usersObserver = observer;
-        }).share();
-        this._dataStore = { users: [] };
+        }).startWith(this._dataStore.users).share();
     }
     getAllUsers() {
         if (this._dataStore.users.length === 0) {
@@ -25,6 +25,8 @@ export class UserService {
                     this._dataStore.users = data;
                     this._usersObserver.next(this._dataStore.users);
                 }, error => console.log('Could not load users.'));
+        } else {
+            this._usersObserver.next(this._dataStore.users);
         }
     }
     add(user: User) {

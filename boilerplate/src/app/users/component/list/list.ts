@@ -4,7 +4,7 @@ import {COMMON_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/comm
 import {EditUser, isEditable} from '../edit/edit';
 import {DeleteUser} from '../delete/delete';
 import {UserService} from '../../services/user.service';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
@@ -15,14 +15,17 @@ import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
 })
 
 export class ListUsers implements OnInit, OnDestroy {
-    users: Observable<User[]>;
-    constructor(@Inject(UserService) private userService: UserService, private router: Router) {
+    users: User[];
+    subscription: Subscription;
+    constructor( @Inject(UserService) private userService: UserService, private router: Router) {
     }
     ngOnInit() {
-        this.users = this.userService.users;
+        this.subscription = this.userService.users.subscribe(data => this.users = data);
         this.userService.getAllUsers();
     }
-    ngOnDestroy() { }
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
     goToCreateUser(event: any) {
         this.router.navigateByUrl('home/users/create');
     }
