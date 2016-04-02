@@ -11,6 +11,7 @@ There are plenty of boilerplates out there. Why create another one? Well, becaus
 * Developers need the freedom to choose css framework.
 * Tests are more than coverage, they guide design.
 * Refactoring code should be painless.
+* No matter how large the project gets, it should still be a joy to work with. 
 
 ## Installation
 -Open your terminal and run the following command:
