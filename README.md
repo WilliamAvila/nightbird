@@ -11,7 +11,7 @@ There are plenty of boilerplates out there. Why create another one? Well, becaus
 * Developers need the freedom to choose css framework.
 * Tests are more than coverage, they guide design.
 * Refactoring code should be painless.
-* No matter how large the project gets, it should still be a joy to work with. 
+* No matter how large the project gets, it should still be a joy to work with.
 
 ## Installation
 -Open your terminal and run the following command:
@@ -20,7 +20,7 @@ There are plenty of boilerplates out there. Why create another one? Well, becaus
 
 -Create a new folder for your project and navigate to that folder.
 Then, run the following command:
-	
+
 ```$ yo nightbird```
 
 ## Running Nightbird
@@ -37,10 +37,12 @@ gulp prod
 |     Subgenerators     |               Description               | Command         |
 | --------------------- |:---------------------------------------:| :-----------------------:|
 |       Bootstrap       |   Add bootstrap styles in your project  | `$ yo nightbird:bootstrap`|
+|       Navbar          |   Add a navbar with the amount of views Specified  | `$ yo nightbird:navbar`|
+|       Wysiwyg         |   Add wysiwyg Componenet                | `$ yo nightbird:wysiwyg`|
 
 
 
-# Video Tutorials 
+# Video Tutorials
 For more information about how to install and use Nightbird you can see [Nightbird Video tutorials](https://youtu.be/MMkVZwVZkm0?list=PLdHGHHzhNZuCSits8Nx8zDR6U5reWtlMc)
 
 ## How to contribute
